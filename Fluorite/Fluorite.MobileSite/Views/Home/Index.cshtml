@@ -1,0 +1,187 @@
+﻿@{
+    Layout = "~/Views/_Layout.cshtml";
+}
+
+
+<style>
+    div.head {
+        margin: 5px 0;
+    }
+
+
+    div.menu, div.user {
+        width: 10%;
+    }
+
+    div.logo {
+        width: 80%;
+        text-align: center;
+    }
+
+    div.head i {
+        font-size: 2em;
+        color: #292929;
+    }
+
+    div.logo img {
+        height: 32px;
+    }
+
+    
+
+    .owl-wrapper-outer {
+        width: 100%;
+    }
+
+        .owl-wrapper-outer img {
+            width: 100%;
+        }
+
+    .owl-controls {
+        margin-top: -8% !important;
+        position: relative;
+        z-index: 99999;
+    }
+
+    div.owl-page.active span {
+        background-color: black !important;
+    }
+
+    div.content,div.item{
+        margin: 10px auto;
+    }
+
+    div.item {
+        width: 100%;
+        background-color: lightgrey;
+    }
+    div.item div {
+        width: 100%;
+    }
+
+    div.item_text {
+        text-align: center;
+        vertical-align: middle;
+        color:rgb(30, 30, 30);
+        font-size: 1em;
+        line-height: 20px;
+        height: 20px;
+    }
+
+    div.item_img img {
+        width: 100%;
+    }
+    .fl {
+        float: left;
+    }
+    .fr {
+        float: right;
+    }
+    .cf {
+        clear: both;
+    }
+    .w100 {
+        width: 100%;
+    }
+    div.foot_left_logo {
+        width: 35%;
+    }
+    div.foot_left_logo img{
+        width: 100%;
+    }
+    div.foot_right_text {
+        width: 65%;
+        font-size: 1em;
+        text-align: center;
+        vertical-align: middle;
+        color: rgb(30, 30, 30);
+        line-height: 55px;
+        height: 55px;
+    }
+    div.foot_logo {
+        min-height: 55px;
+    }
+    div.foot_bottom {
+        text-align: center;
+    }
+</style>
+
+<div class="head w100">
+    <div class="menu fl">
+        <i class="fa fa-bars"></i>
+    </div>
+    <div class="logo fl">
+        <img src="~/页面内元素打包/顶部元素/顶部LOGO.png" />
+    </div>
+    <div class="user fl">
+        <i class="fa fa-circle"></i>
+    </div>
+</div>
+<div id="owl-example" class="owl-carousel w100">
+    <div>
+        <img src="~/页面内元素打包/内容元素/大图01.jpg" />
+    </div>
+    <div>
+        <img src="~/页面内元素打包/内容元素/大图02.jpg" />
+    </div>
+    <div>
+        <img src="~/页面内元素打包/内容元素/大图03.jpg" />
+    </div>
+    <div>
+        <img src="~/页面内元素打包/内容元素/大图04.jpg" />
+    </div>
+    <div>
+        <img src="~/页面内元素打包/内容元素/大图05.jpg" />
+    </div>
+</div>
+
+<div class="content w100">
+    <div class="item">
+        <div class="item_img"><img src="~/页面内元素打包/内容元素/大图02.jpg" /></div>
+        <div class="item_text">标题文字标题文字标题文字标题文字</div>
+    </div>
+    <div class="item">
+        <div class="item_img">
+            <img src="~/页面内元素打包/内容元素/大图03.jpg" />
+        </div>
+        <div class="item_text">标题文字标题文字标题文字标题文字</div>
+    </div>
+    <div class="item">
+        <div class="item_img">
+            <img src="~/页面内元素打包/内容元素/大图04.jpg" />
+        </div>
+        <div class="item_text">标题文字标题文字标题文字标题文字</div>
+    </div>
+    <div class="item">
+        <div class="item_img"><img src="~/页面内元素打包/内容元素/大图05.jpg" /></div>
+        <div class="item_text">标题文字标题文字标题文字标题文字</div>
+    </div>
+</div>
+<div class="foot">
+    <div class="foot_logo">
+        <div class="fl foot_left_logo">
+            <img src="~/页面内元素打包/内容元素/小LOGO图片01.jpg" />
+        </div>
+        <div class="fr foot_right_text">
+            标题文字标题文字标题文字
+        </div>
+    </div>
+    <div class="foot_logo">
+        <div class="fl foot_left_logo">
+
+            <img src="~/页面内元素打包/内容元素/小LOGO图片02.jpg" />
+        </div>
+        <div class="fr foot_right_text">
+            标题文字标题文字标题文字
+        </div>
+    </div>
+    <div class="foot_bottom w100">
+        <img src="~/页面内元素打包/底部元素/底部logo-图片.png" class="w100"/>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $("#owl-example").owlCarousel();
+    });
+</script>
