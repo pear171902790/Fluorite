@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Fluorite.MobileSite.Data;
 
 namespace Fluorite.MobileSite
 {
@@ -13,6 +14,7 @@ namespace Fluorite.MobileSite
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            var list = DB.Instance.Datas.Take(1).ToList();
         }
     }
 }

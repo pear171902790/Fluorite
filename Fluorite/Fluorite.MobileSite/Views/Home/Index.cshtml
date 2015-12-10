@@ -1,122 +1,7 @@
 ﻿@{
     Layout = "~/Views/_Layout.cshtml";
 }
-
-
-<style>
-    div.head {
-        margin: 5px 0;
-    }
-
-
-    div.menu, div.user {
-        width: 10%;
-    }
-
-    div.logo {
-        width: 80%;
-        text-align: center;
-    }
-
-    div.head i {
-        font-size: 2em;
-        color: #292929;
-    }
-
-    div.logo img {
-        height: 32px;
-    }
-
-
-
-    .owl-wrapper-outer {
-        width: 100%;
-    }
-
-    .owl-wrapper-outer img {
-        width: 100%;
-    }
-
-    .owl-controls {
-        margin-top: -8% !important;
-        position: relative;
-        z-index: 99999;
-    }
-
-    div.owl-page.active span {
-        background-color: black !important;
-    }
-
-    div.content, div.item {
-        margin: 10px auto;
-    }
-
-    div.item {
-        width: 100%;
-        background-color: lightgrey;
-    }
-    div.item div {
-        width: 100%;
-    }
-
-    div.item_text {
-        text-align: center;
-        vertical-align: middle;
-        color: rgb(30, 30, 30);
-        font-size: 1em;
-        line-height: 20px;
-        height: 20px;
-    }
-
-    div.item_img img {
-        width: 100%;
-    }
-    .fl {
-        float: left;
-    }
-    .fr {
-        float: right;
-    }
-    .cf {
-        clear: both;
-    }
-    .w100 {
-        width: 100%;
-    }
-    div.foot_left_logo {
-        width: 35%;
-    }
-    div.foot_left_logo img {
-        width: 100%;
-    }
-    div.foot_right_text {
-        width: 65%;
-        font-size: 1em;
-        text-align: center;
-        vertical-align: middle;
-        color: rgb(30, 30, 30);
-        line-height: 55px;
-        height: 55px;
-    }
-    div.foot_logo {
-        min-height: 55px;
-    }
-    div.foot_bottom {
-        text-align: center;
-    }
-    div.left{
-        background-color: greenyellow;
-        width: 40%;
-        height: 400px;
-    }
-    div.right{width: 60%;}
-    
-    .right_main {
-        width: 95%;
-        margin: 0 auto;
-    }
-</style>
-
+<link href="~/Content/index.css" rel="stylesheet" />
 
 <div class="left fl">
 </div>
@@ -181,12 +66,13 @@
         <div class="foot">
             <div class="foot_logo">
                 <div class="fl foot_left_logo">
-                    <img src="~/页面内元素打包/内容元素/小LOGO图片01.jpg" />
+                    <img src="~/页面内元素打包/内容元素/小LOGO图片01.jpg"/>
                 </div>
                 <div class="fr foot_right_text">
                     标题文字标题文字标题文字
                 </div>
             </div>
+            <div class="cf"></div>
             <div class="foot_logo">
                 <div class="fl foot_left_logo">
 
@@ -203,11 +89,14 @@
     </div>
 </div>
 <script>
+    window.scrollTo(1000, 0);
     var leftShow = false;
     $(document).ready(function () {
         $("#owl-example").owlCarousel();
     });
     var windowWidth = $(window).width();
+    var windowHeight = $(window).height();
+    $('div.left').css('height', windowHeight + 'px');
     $('div.main').css('width', (windowWidth * 166/100) +'px');
     $('div.menu').on('click', function() {
         if (leftShow) {
@@ -218,4 +107,12 @@
             leftShow = true;
         }
     });
+//    $("div.content").on("touchend", function () {
+//        var leftSwipe = window.scrollX < currentX;
+//        var rightSwipe = window.scrollX > currentX;
+//        if ((window.scrollX - currentX)>200) {
+//            window.scrollTo(0, 0);
+//            currentX = window.scrollX;
+//        }
+//    });
 </script>

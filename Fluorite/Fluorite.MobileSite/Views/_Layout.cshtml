@@ -9,21 +9,34 @@
     <meta name="viewport" content="width=device-width" />
     <title></title>
     <link href="~/font-awesome-4.4.0/css/font-awesome.min.css" rel="stylesheet" />
-    <link href="~/owl.carousel/owl-carousel/owl.carousel.css" rel="stylesheet"/>
-    <link href="~/owl.carousel/owl-carousel/owl.theme.css" rel="stylesheet"/>
+    <link href="~/owl.carousel/owl-carousel/owl.carousel.css" rel="stylesheet" />
+    <link href="~/owl.carousel/owl-carousel/owl.theme.css" rel="stylesheet" />
+    <link href="~/Content/jquery.mobile-1.4.5.min.css" rel="stylesheet" />
     <style>
-        *{margin: 0;padding: 0;}
-        html,body{height: 100%;font-size: 15px;font-family: 微软雅黑, 宋体, Arial, Helvetica, sans-serif;}
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            height: 100%;
+            font-size: 15px;
+            font-family: 微软雅黑, 宋体, Arial, Helvetica, sans-serif;
+        }
+
         div.main {
             margin: 0 auto;
         }
     </style>
     <script src="~/owl.carousel/assets/js/jquery-1.9.1.min.js"></script>
     <script src="~/owl.carousel/owl-carousel/owl.carousel.min.js"></script>
+
+
+
 </head>
 <body>
-<div class="main">
-    @RenderBody()
-</div>
+    <div class="main">
+        @RenderBody()
+    </div>
 </body>
 </html>
