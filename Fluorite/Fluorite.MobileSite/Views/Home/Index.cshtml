@@ -4,6 +4,21 @@
 <link href="~/Content/index.css" rel="stylesheet" />
 
 <div class="left fl">
+    <div class="left_search">
+        <div style="width: 100%; height: 5px;"></div>
+        <div class="left_search_input">
+            <input type="text" />
+            <i class="fa fa-search"></i>
+        </div>
+    </div>
+    <div class="left_menu">登录</div>
+    <div class="left_menu">菜单1</div>
+    <div class="left_menu">菜单2</div>
+    <div class="left_menu">菜单3</div>
+    <div class="left_menu">菜单4</div>
+    <div class="left_menu">菜单5</div>
+    <div class="left_menu">菜单6</div>
+    <div class="left_menu">菜单7</div>
 </div>
 <div class="right fl">
     <div class="right_main">
@@ -12,10 +27,10 @@
                 <i class="fa fa-bars"></i>
             </div>
             <div class="logo fl">
-                <img src="~/页面内元素打包/顶部元素/顶部LOGO.png"/>
+                <img src="~/页面内元素打包/顶部元素/顶部LOGO.png" />
             </div>
             <div class="user fl">
-                <i class="fa fa-circle"></i>
+@*                <i class="fa fa-circle"></i>*@
             </div>
         </div>
         <div class="cf"></div>
@@ -66,7 +81,7 @@
         <div class="foot">
             <div class="foot_logo">
                 <div class="fl foot_left_logo">
-                    <img src="~/页面内元素打包/内容元素/小LOGO图片01.jpg"/>
+                    <img src="~/页面内元素打包/内容元素/小LOGO图片01.jpg" />
                 </div>
                 <div class="fr foot_right_text">
                     标题文字标题文字标题文字
@@ -89,30 +104,26 @@
     </div>
 </div>
 <script>
-    window.scrollTo(1000, 0);
-    var leftShow = false;
     $(document).ready(function () {
-        $("#owl-example").owlCarousel();
+        var leftShow = false;
+        var windowWidth = $(window).width();
+        $('div.main').css('width', (windowWidth * 166 / 100) + 'px');
+        $('div.menu').on('click', function () {
+            if (leftShow) {
+                window.scrollTo(3000, 0);
+                leftShow = false;
+            } else {
+                window.scrollTo(0, 0);
+                leftShow = true;
+            }
+        });
+        window.scrollTo(3000, 0);
+        $("#owl-example").owlCarousel({
+            autoPlay: true,
+            stopOnHover: true,
+            singleItem: true
+        });
+        $('div.left').css('height', $('.right').height() + 'px');
+        $('div.left').hide();
     });
-    var windowWidth = $(window).width();
-    var windowHeight = $(window).height();
-    $('div.left').css('height', windowHeight + 'px');
-    $('div.main').css('width', (windowWidth * 166/100) +'px');
-    $('div.menu').on('click', function() {
-        if (leftShow) {
-            window.scrollTo(1000, 0);
-            leftShow = false;
-        } else {
-            window.scrollTo(0, 0);
-            leftShow = true;
-        }
-    });
-//    $("div.content").on("touchend", function () {
-//        var leftSwipe = window.scrollX < currentX;
-//        var rightSwipe = window.scrollX > currentX;
-//        if ((window.scrollX - currentX)>200) {
-//            window.scrollTo(0, 0);
-//            currentX = window.scrollX;
-//        }
-//    });
 </script>

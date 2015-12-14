@@ -30,8 +30,8 @@
         width: 100%;
     }
 
-    .owl-wrapper-outer img {
-        width: 100%;
+    .owl-item div,.owl-item img {
+        width: 100% !important;
     }
 
     .owl-controls {
@@ -61,8 +61,8 @@
         vertical-align: middle;
         color: #727272;
         font-size: 1em;
-        line-height: 20px;
-        height: 20px;
+        line-height: 50px;
+        height: 50px;
     }
 
     div.item_img img {
@@ -110,4 +110,30 @@
     .right_main {
         width: 95%;
         margin: 0 auto;
+    }
+    .left_search {
+        background-color: #707070;
+        height: 40px;
+        width: 100%;
+    }
+    .left_search_input {
+        background-color: white;
+        width: 95%;
+        height: 30px;
+        margin: 0 auto;
+    }
+    .left_search_input input {
+        height: 30px;
+        border: 0;
+        width: 88%;
+    }
+    .left_menu {
+        width: 100%;
+        height: 40px;
+        background-color: #434343;
+        border-bottom: 1px solid #707070;
+        line-height: 40px;
+        text-align: center;
+        vertical-align: middle;
+        color: #A0A0A0;
     }
