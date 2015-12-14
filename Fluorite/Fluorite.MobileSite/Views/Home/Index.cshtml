@@ -7,7 +7,7 @@
     <div class="left_search">
         <div style="width: 100%; height: 5px;"></div>
         <div class="left_search_input">
-            <input type="text" />
+            <input type="text"/>
             <i class="fa fa-search"></i>
         </div>
     </div>
@@ -20,6 +20,7 @@
     <div class="left_menu">菜单6</div>
     <div class="left_menu">菜单7</div>
 </div>
+<div class="cover"></div>
 <div class="right fl">
     <div class="right_main">
         <div class="head w100">
@@ -33,7 +34,7 @@
 @*                <i class="fa fa-circle"></i>*@
             </div>
         </div>
-        <div class="cf"></div>
+        <div class="cf" style="width: 100%; height: 41px;"></div>
         <div id="owl-example" class="owl-carousel w100">
             <div>
                 <img src="~/页面内元素打包/内容元素/大图01.jpg" />
@@ -105,25 +106,44 @@
 </div>
 <script>
     $(document).ready(function () {
+        $('div.left').hide();
         var leftShow = false;
         var windowWidth = $(window).width();
-        $('div.main').css('width', (windowWidth * 166 / 100) + 'px');
-        $('div.menu').on('click', function () {
+        var windowHeight = $(window).height();
+        var mainWidth = windowWidth * 166 / 100;
+        $('div.main').css('width', mainWidth + 'px');
+        var showLeftMenu = function () {
+            $('div.left').show();
+            $('div.cover').show();
+            window.scrollTo(0, 0);
+            leftShow = true;
+        };
+        var hideLeftMenu = function () {
+            $('div.left').hide();
+            $('div.cover').hide();
+            leftShow = false;
+        };
+        $('div.menu').on('touchend',function() {
             if (leftShow) {
-                window.scrollTo(3000, 0);
-                leftShow = false;
+                hideLeftMenu();
             } else {
-                window.scrollTo(0, 0);
-                leftShow = true;
+                showLeftMenu();
             }
         });
-        window.scrollTo(3000, 0);
+        $('.cover').on('touchstart', hideLeftMenu);
         $("#owl-example").owlCarousel({
             autoPlay: true,
             stopOnHover: true,
             singleItem: true
         });
-        $('div.left').css('height', $('.right').height() + 'px');
-        $('div.left').hide();
+        $('.left').on('touchmove', function (event) {
+            var e = window.event || event;
+            e.preventDefault();
+            e.returnValue = false;
+        });
+        var rightHeight = $('.right').height();
+        var rightWidth = $('.right').width();
+        $('div.left').css('height', windowHeight+200 + 'px');
+        $('div.cover').css('width', rightWidth + 'px').css('height', rightHeight + 'px').css('left', (mainWidth - rightWidth) + 'px');
     });
 </script>

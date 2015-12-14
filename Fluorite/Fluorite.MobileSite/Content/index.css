@@ -1,5 +1,9 @@
 ﻿div.head {
-        margin: 5px 0;
+        margin: 0 0;
+    position: fixed;
+    z-index: 9999;
+    background-color: white;
+    padding-top: 5px;
     }
 
 
@@ -37,7 +41,7 @@
     .owl-controls {
         margin-top: -8% !important;
         position: relative;
-        z-index: 99999;
+        z-index: 7777;
     }
 
     div.owl-page.active span {
@@ -136,4 +140,16 @@
         text-align: center;
         vertical-align: middle;
         color: #A0A0A0;
+    }
+
+    .cover {
+        display: none;
+        background-color: white;
+        filter: alpha(opacity=70);
+        -moz-opacity: 0.7;
+        -khtml-opacity: 0.7;
+        opacity: 0.7;
+        position: fixed;
+        top: 0;
+        z-index: 8888;
     }

@@ -26,6 +26,7 @@ Thumbs.db
 *.lib
 *.sbr
 obj/
+Fluorite/packages/
 [Rr]elease*/
 _ReSharper*/
 [Tt]est[Rr]esult*
