@@ -38,15 +38,13 @@
         width: 100% !important;
     }
 
-    .owl-controls {
+    .owl-dots {
         margin-top: -8% !important;
         position: relative;
         z-index: 7777;
     }
 
-    div.owl-page.active span {
-        background-color: black !important;
-    }
+    
 
     div.content, div.item {
         margin: 10px auto;
