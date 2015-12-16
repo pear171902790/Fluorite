@@ -106,7 +106,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\index.css" />
+    <Content Include="Content\index.js" />
     <Content Include="Content\jquery-1.9.1.min.js" />
+    <Content Include="Content\放大镜按钮30x30.png" />
+    <Content Include="Content\菜单按钮30x30.png" />
     <Content Include="font-awesome-4.4.0\css\font-awesome.css" />
     <Content Include="font-awesome-4.4.0\css\font-awesome.min.css" />
     <Content Include="font-awesome-4.4.0\fonts\fontawesome-webfont.svg" />

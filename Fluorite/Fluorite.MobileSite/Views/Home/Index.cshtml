@@ -12,7 +12,9 @@
         <div style="width: 100%; height: 5px;"></div>
         <div class="left_search_input">
             <input type="text" id="search"/>
-            <a class="search_button"><i class="fa fa-search"></i></a>
+            <div class="search_button">
+                
+            </div>
         </div>
     </div>
     <div class="left_menu">登录</div>
@@ -29,7 +31,7 @@
     <div class="right_main">
         <div class="head w100">
             <div class="menu fl">
-                <i class="fa fa-bars"></i>
+                <img src="~/Content/菜单按钮30x30.png" />
             </div>
             <div class="logo fl">
                 <img src="~/页面内元素打包/顶部元素/顶部LOGO.png" />
@@ -108,54 +110,4 @@
         </div>
     </div>
 </div>
-<script>
-    $(document).ready(function () {
-//        $("#search").attr({ "disabled": "disabled" });
-        $('div.left').hide();
-        var leftShow = false;
-        var windowWidth = $(window).width();
-        var windowHeight = $(window).height();
-        var mainWidth = windowWidth * 166 / 100;
-        $('div.main').css('width', mainWidth + 'px');
-        var showLeftMenu = function () {
-            window.scrollTo(0, 0);
-            $('div.left').show();
-            $('div.cover').show();
-            leftShow = true;
-        };
-        var hideLeftMenu = function () {
-            $('div.left').hide();
-            $('div.cover').hide();
-            leftShow = false;
-        };
-        $('div.menu').on('touchend', function (event) {
-            if (leftShow) {
-                hideLeftMenu();
-            } else {
-                showLeftMenu();
-            }
-            var e = window.event || event;
-            e.preventDefault();
-            e.returnValue = false;
-        });
-        $('.cover').on('touchstart', hideLeftMenu);
-        $(".owl-carousel").owlCarousel({
-            autoplay: true,
-            items: 1,
-            loop: true,
-            dots:true
-        });
-        $('.left').on('touchmove', function (event) {
-            var e = window.event || event;
-            e.preventDefault();
-            e.returnValue = false;
-        });
-        $('.search_button').on('touchend', function () {
-            
-        });
-//        var rightHeight = $('.right').height();
-        var rightWidth = $('.right').width();
-        $('div.left').css('height', windowHeight+200 + 'px');
-        $('div.cover').css('width', windowWidth / 3 + 'px').css('height', windowHeight + 'px').css('left', (mainWidth - rightWidth) + 'px');
-    });
-</script>
+<script src="~/Content/index.js"></script>
