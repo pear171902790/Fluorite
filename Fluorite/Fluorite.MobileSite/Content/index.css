@@ -3,7 +3,6 @@
     position: fixed;
     z-index: 9999;
     background-color: white;
-    padding-top: 5px;
     }
 
 
@@ -90,6 +89,8 @@
    
     div.foot_bottom {
         text-align: center;
+        font-weight: bold;
+        font-size: 2em;
     }
     div.left{
         background-color: #434343;
