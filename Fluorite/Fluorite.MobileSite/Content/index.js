@@ -6,8 +6,10 @@
     var mainWidth = windowWidth * 166 / 100;
     $('div.main').css('width', mainWidth + 'px');
     var rightWidth = $('.right').width();
-    $('div.left').css('height', windowHeight + 200 + 'px');
-    $('div.cover').css('width', windowWidth / 3 + 'px').css('height', windowHeight + 'px').css('left', (mainWidth - rightWidth) + 'px');
+//    $('div.left').css('height', windowHeight + 200 + 'px');
+    //    $('div.cover').css('width', windowWidth / 3 + 'px').css('height', windowHeight + 'px').css('left', (mainWidth - rightWidth) + 'px');
+    $('div.left').css('height', '2000px');
+    $('div.cover').css('width',  '2000px').css('height', '2000px').css('left', (mainWidth - rightWidth) + 'px');
     var setResponsiveValue = function ($obj, values, propertyNames) {
         if (propertyNames && values) {
             var finalValue = 0;
@@ -29,11 +31,12 @@
     setResponsiveValue($('div.foot_logo'), [55], ['min-height']);
     setResponsiveValue($('.left_search'), [40], ['height']);
     setResponsiveValue($('.left_search_input'), [30], ['height']);
-    setResponsiveValue($('.left_search_input input'), [30], ['height']);
+    setResponsiveValue($('#search'), [30], ['height']);
     setResponsiveValue($('.left_menu'), [40], ['height', 'line-height']);
     setResponsiveValue($('.search_button'), [30], ['height']);
     setResponsiveValue($('div.content'), [15], ['margin-top', 'margin-bottom']);
     setResponsiveValue($('div.item'), [10], ['margin-top', 'margin-bottom']);
+
 
     var showLeftMenu = function () {
         window.scrollTo(0, 0);

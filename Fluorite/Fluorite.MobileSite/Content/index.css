@@ -30,6 +30,7 @@
     .owl-item div,.owl-item img {
         width: 100% !important;
     }
+    
 
     .owl-dots {
         margin-top: -8% !important;
@@ -111,7 +112,7 @@
         width: 95%;
         margin: 0 auto;
     }
-    .left_search_input input {
+    #search {
         border: 0;
         width: 85%;
     }
