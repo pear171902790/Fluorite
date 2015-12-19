@@ -139,8 +139,7 @@
 .search_button {
     width: 15%;
     float: right;
-    background-image: url('放大镜按钮30x30.png');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 80% 75%;
+}
+.search_button img {
+    width: 80%;
 }

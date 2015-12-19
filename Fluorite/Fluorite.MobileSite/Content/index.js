@@ -34,6 +34,7 @@
     setResponsiveValue($('#search'), [30], ['height']);
     setResponsiveValue($('.left_menu'), [40], ['height', 'line-height']);
     setResponsiveValue($('.search_button'), [30], ['height']);
+    setResponsiveValue($('.search_button img'), [3], ['margin-top']);
     setResponsiveValue($('div.content'), [15], ['margin-top', 'margin-bottom']);
     setResponsiveValue($('div.item'), [10], ['margin-top', 'margin-bottom']);
 
