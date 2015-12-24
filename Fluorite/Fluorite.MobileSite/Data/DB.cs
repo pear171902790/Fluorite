@@ -15,7 +15,9 @@ namespace Fluorite.MobileSite.Data
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<DB, Migrations.Configuration>());
         }
-        public DbSet<Data> Datas { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Seller> Sellers { get; set; }
+        public DbSet<Article> Articles { get; set; }
 
         public static DB Instance
         {
@@ -23,19 +25,36 @@ namespace Fluorite.MobileSite.Data
         }
     }
 
-    public class Data
+    public class User
     {
         [Key]
-        public Guid Key { get; set; }
-        public int Type { get; set; }
-        public string Value { get; set; }
+        public Guid Id { get; set; }
+        public string Name { get; set; }
+        public string Phone { get; set; }
         public DateTime CreateTime { get; set; }
         public bool Valid { get; set; }
     }
 
-    public enum DataType
+    public class Seller
     {
-        User = 1,
-        Seller = 2
+        [Key]
+        public Guid Id { get; set; }
+        public string Name { get; set; }
+        public string Tel { get; set; }
+        public DateTime CreateTime { get; set; }
+        public bool Valid { get; set; }
+        public virtual List<Article> Article { get; set; }
     }
+    public class Article
+    {
+        [Key]
+        public Guid Id { get; set; }
+        public string Title { get; set; }
+        public string Content { get; set; }
+        public DateTime CreateTime { get; set; }
+        public bool Valid { get; set; }
+        public Guid SellerId { get; set; }
+        public virtual Seller Seller { get; set; }
+    }
+
 }

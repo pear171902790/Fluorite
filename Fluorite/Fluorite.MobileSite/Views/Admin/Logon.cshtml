@@ -1,0 +1,62 @@
+﻿@model dynamic
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>title</title>
+    <link href="~/bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/bootstrap-3.3.6-dist/css/bootstrap-theme.min.css" rel="stylesheet" />
+    <style>
+        div.panel {
+            margin: 200px auto;
+            width: 30%;
+        }
+    </style>
+</head>
+<body>
+    <div class="panel panel-success">
+        <div class="panel-heading">
+            <h3 class="panel-title">登录</h3>
+        </div>
+        <div class="panel-body">
+            <form id="form_Logon">
+                <div class="form-group">
+                    <label>用户名</label>
+                    <input type="email" class="form-control" name="Username" placeholder="用户名">
+                </div>
+                <div class="form-group">
+                    <label>密码</label>
+                    <input type="password" class="form-control" name="Password" placeholder="密码">
+                </div>
+                <input type="button" class="btn btn-default" value="登录" id="btn_Logon" />
+            </form>
+        </div>
+    </div>
+    <script src="~/Content/jquery-1.9.1.min.js"></script>
+    <script src="~/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
+    <script src="~/Content/data-getter.js"></script>
+    <script>
+        (function ($) {
+            $('#btn_Logon').on('click', function () {
+                var command = $('#form_Logon').serializeJson();
+                $.ajax({
+                    url: "@Url.Action("CheckAuthentication","Admin")",
+                    type: 'post',
+                    data: command,
+                    success: function () {
+                        window.location.href = "@Url.Action("Seller", "Admin")";
+                    },
+                    error: function () {
+                        alert('用户名或密码错误');
+                    }
+                });
+            });
+        })(jQuery);
+    </script>
+</body>
+</html>

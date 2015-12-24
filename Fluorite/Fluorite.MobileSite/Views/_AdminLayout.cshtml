@@ -1,0 +1,29 @@
+﻿@model dynamic
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>title</title>
+    <link href="~/bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/bootstrap-3.3.6-dist/css/bootstrap-theme.min.css" rel="stylesheet" />
+    <style>
+        div.main {
+            margin: 100px auto;
+            width: 70%;
+        }
+    </style>
+</head>
+<body>
+<div class="main">
+    @RenderBody()
+</div>
+<script src="~/Content/jquery-1.9.1.min.js"></script>
+<script src="~/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
+<script src="~/Content/data-getter.js"></script>
+</body>
+</html>

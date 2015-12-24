@@ -1,0 +1,43 @@
+﻿@using Fluorite.MobileSite.Data
+@model dynamic
+
+@{
+    Layout = "~/Views/_AdminLayout.cshtml";
+    var sellers = ViewBag.Sellers as List<Seller>;
+}
+<style>
+    h1 {
+        display: inline-block;
+    }
+     #btn_add_seller {
+         margin-right: 5px !important;
+     }
+</style>
+
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h1 class="panel-title">商家管理</h1>
+        <input type="button" value="新增商家" id="btn_add_seller"/>
+    </div>
+    <table class="table table-hover table-striped table-bordered">
+        <tr>
+            <th>商家名称</th>
+            <th>创建时间</th>
+            <th>操作</th>
+        </tr>
+        @if (sellers != null && sellers.Any())
+        {
+            foreach (var seller in sellers)
+            {
+                <tr>
+                    <td>@seller.Name</td>
+                    <td>@seller.CreateTime.ToLongDateString()</td>
+                    <td>
+                        <input type="button" value="管理" class="btn btn-primary"/>
+                        <input type="button" value="删除" class="btn btn-warning" />
+                    </td>
+                </tr>
+            }
+        }
+    </table>
+</div>

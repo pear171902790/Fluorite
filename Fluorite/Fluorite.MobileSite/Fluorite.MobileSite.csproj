@@ -105,6 +105,15 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bootstrap-3.3.6-dist\css\bootstrap-theme.css" />
+    <Content Include="bootstrap-3.3.6-dist\css\bootstrap-theme.min.css" />
+    <Content Include="bootstrap-3.3.6-dist\css\bootstrap.css" />
+    <Content Include="bootstrap-3.3.6-dist\css\bootstrap.min.css" />
+    <Content Include="bootstrap-3.3.6-dist\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="bootstrap-3.3.6-dist\js\bootstrap.js" />
+    <Content Include="bootstrap-3.3.6-dist\js\bootstrap.min.js" />
+    <Content Include="bootstrap-3.3.6-dist\js\npm.js" />
+    <Content Include="Content\data-getter.js" />
     <Content Include="Content\index.css" />
     <Content Include="Content\index.js" />
     <Content Include="Content\jquery-1.9.1.min.js" />
@@ -124,6 +133,14 @@
     <Content Include="owl.carousel.2.0.0-beta.3\assets\owl.video.play.png" />
     <Content Include="owl.carousel.2.0.0-beta.3\owl.carousel.js" />
     <Content Include="owl.carousel.2.0.0-beta.3\owl.carousel.min.js" />
+    <Content Include="bootstrap-3.3.6-dist\css\bootstrap-theme.css.map" />
+    <Content Include="bootstrap-3.3.6-dist\css\bootstrap-theme.min.css.map" />
+    <Content Include="bootstrap-3.3.6-dist\css\bootstrap.css.map" />
+    <Content Include="bootstrap-3.3.6-dist\css\bootstrap.min.css.map" />
+    <Content Include="bootstrap-3.3.6-dist\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="bootstrap-3.3.6-dist\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="bootstrap-3.3.6-dist\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="bootstrap-3.3.6-dist\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="TextFile1.txt" />
     <Content Include="Web.config" />
     <Content Include="页面内元素打包\内容元素\两大图之间纯高度-左右未含两侧空白宽度.png" />
@@ -147,14 +164,17 @@
     <Content Include="页面内元素打包\顶部元素\顶部LOGO.png" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="HandleExceptionFilterAttribute.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Data\DB.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\JsonBinder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -170,6 +190,9 @@
     <Content Include="font-awesome-4.4.0\fonts\FontAwesome.otf" />
     <Content Include="owl.carousel.2.0.0-beta.3\LICENSE" />
     <Content Include="owl.carousel.2.0.0-beta.3\README.md" />
+    <Content Include="Views\Admin\Seller.cshtml" />
+    <Content Include="Views\_AdminLayout.cshtml" />
+    <Content Include="Views\Admin\Logon.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
