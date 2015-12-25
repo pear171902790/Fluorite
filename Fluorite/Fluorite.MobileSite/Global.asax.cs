@@ -14,7 +14,7 @@ namespace Fluorite.MobileSite
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             FilterConfig.RegisterGlobalFilters(GlobalConfiguration.Configuration.Filters);
-            var list = DB.Instance.Users.Take(1).ToList();
+            var list = new DB().Users.Take(1).ToList();
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Transactions;
 using System.Web.Mvc;
 using Fluorite.MobileSite.Data;
 using Fluorite.MobileSite.Models;
@@ -11,7 +12,7 @@ namespace Fluorite.MobileSite.Controllers
         [HttpGet]
         public ActionResult Seller()
         {
-            var list = DB.Instance.Sellers.OrderByDescending(x=>x.CreateTime).ToList();
+            var list = new DB().Sellers.OrderByDescending(x => x.CreateTime).ToList();
             ViewBag.Sellers = list;
             return View();
         }
@@ -31,10 +32,42 @@ namespace Fluorite.MobileSite.Controllers
             return new HttpStatusCodeResult(200);
         }
 
+        [HttpPost]
+        public ActionResult AddSeller([ModelBinder(typeof(JsonBinder<SellerUICommand>))]SellerUICommand sellerUiCommand)
+        {
+            var seller = new Seller()
+            {
+                Name = sellerUiCommand.Name,
+                Contacts = sellerUiCommand.Contacts,
+                Id = Guid.NewGuid(),
+                CreateTime = DateTime.Now,
+                Remarks = sellerUiCommand.Remarks,
+                Tel = sellerUiCommand.Tel,
+                Valid = true
+            };
+            using (var db = new DB())
+            {
+                using (var transaction = new TransactionScope())
+                {
+                    db.Sellers.Add(seller);
+                    db.SaveChanges();
+                    transaction.Complete();
+                }
+            }
+            return new HttpStatusCodeResult(200);
+        }
+
         public class LogonUICommand
         {
             public string Username { get; set; }
             public string Password { get; set; }
+        }
+        public class SellerUICommand
+        {
+            public string Name { get; set; }
+            public string Contacts { get; set; }
+            public string Tel { get; set; }
+            public string Remarks { get; set; }
         }
     }
 }

@@ -17,13 +17,37 @@
             width: 70%;
         }
     </style>
+    <script src="~/Content/jquery-1.9.1.min.js"></script>
+    <script src="~/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
+    <script src="~/Content/data-getter.js"></script>
 </head>
 <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#" style="color: white;">萤石管理后台</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <form class="navbar-form navbar-right">
+@*                    <div class="form-group">*@
+@*                        <input type="text" placeholder="Email" class="form-control">*@
+@*                    </div>*@
+                    <div class="form-group" style="color: white; margin-right: 5px;">
+                        您好, bjabm.
+                    </div>
+                    <button type="submit" class="btn btn-danger">退出</button>
+                </form>
+            </div><!--/.navbar-collapse -->
+        </div>
+    </nav>
 <div class="main">
     @RenderBody()
 </div>
-<script src="~/Content/jquery-1.9.1.min.js"></script>
-<script src="~/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
-<script src="~/Content/data-getter.js"></script>
 </body>
 </html>

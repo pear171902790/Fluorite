@@ -9,7 +9,6 @@ namespace Fluorite.MobileSite.Data
 {
     public class DB : DbContext
     {
-        private static DB _driverDbContext;
         public DB()
             : base("name=Fluorite")
         {
@@ -18,11 +17,6 @@ namespace Fluorite.MobileSite.Data
         public DbSet<User> Users { get; set; }
         public DbSet<Seller> Sellers { get; set; }
         public DbSet<Article> Articles { get; set; }
-
-        public static DB Instance
-        {
-            get { return _driverDbContext ?? (_driverDbContext = new DB()); }
-        }
     }
 
     public class User
@@ -41,6 +35,8 @@ namespace Fluorite.MobileSite.Data
         public Guid Id { get; set; }
         public string Name { get; set; }
         public string Tel { get; set; }
+        public string Remarks { get; set; }
+        public string Contacts { get; set; }
         public DateTime CreateTime { get; set; }
         public bool Valid { get; set; }
         public virtual List<Article> Article { get; set; }
