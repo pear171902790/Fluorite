@@ -1,0 +1,26 @@
+﻿@{
+    Layout = "~/Views/_AdminLayout.cshtml";
+}
+
+<div>
+
+</div>
+
+
+<script id="container" name="content" type="text/plain">
+</script>
+<!-- 配置文件 -->
+<script src="~/UEditor/ueditor.config.js"></script>
+<!-- 编辑器源码文件 -->
+<script src="~/UEditor/ueditor.all.min.js"></script>
+<!-- 实例化编辑器 -->
+<script type="text/javascript">
+    var ue = UE.getEditor('container', {
+        toolbars: [
+['fullscreen', 'source', 'undo', 'redo'],
+['bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', 'simpleupload']
+        ],
+        autoHeightEnabled: true,
+        autoFloatEnabled: true
+    });
+</script>

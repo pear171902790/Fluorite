@@ -57,6 +57,11 @@ namespace Fluorite.MobileSite.Controllers
             return new HttpStatusCodeResult(200);
         }
 
+        public ActionResult AddArticle()
+        {
+            return View();
+        }
+
         public class LogonUICommand
         {
             public string Username { get; set; }
