@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Mvc;
+using Fluorite.MobileSite.Data;
 
 namespace Fluorite.MobileSite.Controllers
 {
@@ -12,6 +13,12 @@ namespace Fluorite.MobileSite.Controllers
     {
         public ActionResult Index()
         {
+            return View();
+        }
+
+        public ActionResult Test()
+        {
+            ViewBag.Content = new DB().Articles.FirstOrDefault().Content;
             return View();
         }
     }

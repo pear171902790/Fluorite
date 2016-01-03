@@ -8,7 +8,7 @@
 
 <html>
 <head>
-    <title>title</title>
+    <title>登录</title>
     <link href="~/bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/bootstrap-3.3.6-dist/css/bootstrap-theme.min.css" rel="stylesheet" />
     <style>
@@ -45,7 +45,7 @@
             $('#btn_logon').on('click', function () {
                 var command = $('#form_logon').serializeJson();
                 $.ajax({
-                    url: "@Url.Action("CheckAuthentication","Admin")",
+                    url: "@Url.Action("CheckAuthentication", "Authentication")",
                     type: 'post',
                     data: command,
                     success: function () {

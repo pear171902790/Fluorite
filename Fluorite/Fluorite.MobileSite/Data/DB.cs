@@ -48,9 +48,11 @@ namespace Fluorite.MobileSite.Data
         public string Title { get; set; }
         public string Content { get; set; }
         public DateTime CreateTime { get; set; }
+        public string Remarks { get; set; }
         public bool Valid { get; set; }
         public Guid SellerId { get; set; }
         public virtual Seller Seller { get; set; }
+        public string CoverUrl { get; set; }
     }
 
 }

@@ -1,8 +1,8 @@
 ﻿@using Fluorite.MobileSite.Data
 @model dynamic
-
 @{
     Layout = "~/Views/_AdminLayout.cshtml";
+    ViewBag.Title = "商家管理";
     var sellers = ViewBag.Sellers as List<Seller>;
 }
 <style>
@@ -14,7 +14,6 @@
         float: right;
     }
 </style>
-
 <div class="panel panel-info">
     <div class="panel-heading">
         <h1 class="panel-title">商家管理</h1>
@@ -32,9 +31,9 @@
             {
                 <tr>
                     <td>@seller.Name</td>
-                    <td>@seller.CreateTime.ToLongDateString()</td>
+                    <td>@seller.CreateTime.ToShortDateString()</td>
                     <td>
-                        <input type="button" value="管理" class="btn btn-primary" />
+                        <a class="btn btn-primary" href="@Url.Action("Articles",new {sellerId=seller.Id})">管理</a>
                         <input type="button" value="删除" class="btn btn-danger" />
                     </td>
                 </tr>
@@ -42,7 +41,6 @@
         }
     </table>
 </div>
-
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -78,21 +76,19 @@
     </div>
 </div>
 <script>
-    (function ($) {
-        $('#btn_save').on('click', function () {
-            var command = $('#form_add_seller').serializeJson();
-            $.ajax({
-                url: "@Url.Action("AddSeller","Admin")",
-                type: 'post',
-                data: command,
-                success: function () {
-                    document.getElementById('btn_close').click();
-                    window.location.reload();
-                },
-                error: function () {
-                    alert('服务器错误');
-                }
-            });
+    $('#btn_save').on('click', function () {
+        var command = $('#form_add_seller').serializeJson();
+        $.ajax({
+            url: "@Url.Action("AddSeller","Admin")",
+            type: 'post',
+            data: command,
+            success: function () {
+                document.getElementById('btn_close').click();
+                window.location.reload();
+            },
+            error: function () {
+                alert('服务器错误');
+            }
         });
-    })(jQuery);
+    });
 </script>

@@ -7,6 +7,7 @@ using Fluorite.MobileSite.Models;
 
 namespace Fluorite.MobileSite.Controllers
 {
+    [CustomAuthorize]
     public class AdminController : Controller
     {
         [HttpGet]
@@ -15,21 +16,6 @@ namespace Fluorite.MobileSite.Controllers
             var list = new DB().Sellers.OrderByDescending(x => x.CreateTime).ToList();
             ViewBag.Sellers = list;
             return View();
-        }
-        [HttpGet]
-        public ActionResult Logon()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public ActionResult CheckAuthentication([ModelBinder(typeof(JsonBinder<LogonUICommand>))]LogonUICommand logonUiCommand)
-        {
-            if (logonUiCommand.Username != "bjabm" || logonUiCommand.Password != "testSite123")
-            {
-                throw new Exception();
-            }
-            return new HttpStatusCodeResult(200);
         }
 
         [HttpPost]
@@ -56,16 +42,74 @@ namespace Fluorite.MobileSite.Controllers
             }
             return new HttpStatusCodeResult(200);
         }
-
-        public ActionResult AddArticle()
+        [HttpGet]
+        public ActionResult AddArticle(string sellerId)
         {
+            ViewBag.SellerId = sellerId;
+            return View();
+        }
+        [HttpGet]
+        public ActionResult EditArticle(string articleId)
+        {
+            return View("AddArticle");
+        }
+
+        [HttpPost]
+        public ActionResult AddArticle([ModelBinder(typeof(JsonBinder<AddArticleUICommand>))]AddArticleUICommand command)
+        {
+            using (var db = new DB())
+            {
+                using (var transaction = new TransactionScope())
+                {
+                    db.Articles.Add(new Article()
+                    {
+                        Id=Guid.NewGuid(),
+                        Content = command.Details,
+                        CreateTime = DateTime.Now,
+                        SellerId = new Guid(command.SellerId),
+                        Title = command.Title,
+                        Valid = true
+                    });
+                    db.SaveChanges();
+                    transaction.Complete();
+                }
+            }
+
+            return new HttpStatusCodeResult(200);
+        }
+        [HttpGet]
+        public ActionResult Articles(string sellerId)
+        {
+            var guid=new Guid(sellerId);
+            var list = new DB().Articles.Where(x=>x.SellerId==guid).OrderByDescending(x => x.CreateTime).ToList();
+            ViewBag.Articles = list;
+            ViewBag.SellerId = sellerId;
             return View();
         }
 
-        public class LogonUICommand
+        [HttpPost]
+        public ActionResult SaveImage(string sellerId)
         {
-            public string Username { get; set; }
-            public string Password { get; set; }
+            var httpPostedFile = Request.Files[0];
+            var imageName = Guid.NewGuid() + ".jpg";
+            var virtualPath ="~/temp/" + imageName;
+            var fullPath = Server.MapPath(virtualPath);
+            if (System.IO.File.Exists(fullPath))
+            {
+                System.IO.File.Delete(fullPath);
+            }
+            httpPostedFile.SaveAs(fullPath);
+            return Content(imageName);
+        }
+
+        
+
+        public class AddArticleUICommand 
+        {
+            public string Details { get; set; }
+            public string SellerId { get; set; }
+
+            public string Title { get; set; }
         }
         public class SellerUICommand
         {
