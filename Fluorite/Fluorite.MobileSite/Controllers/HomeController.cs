@@ -16,9 +16,10 @@ namespace Fluorite.MobileSite.Controllers
             return View();
         }
 
-        public ActionResult Test()
+        public ActionResult Seller(string sellerId)
         {
-            ViewBag.Content = new DB().Articles.FirstOrDefault().Content;
+            var guid=new Guid(sellerId);
+            ViewBag.Content = new DB().Articles.Where(x=>x.SellerId==guid).ToList();
             return View();
         }
     }

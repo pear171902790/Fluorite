@@ -53,6 +53,16 @@ namespace Fluorite.MobileSite.Data
         public Guid SellerId { get; set; }
         public virtual Seller Seller { get; set; }
         public string CoverUrl { get; set; }
+        
+        public ArticleType Type { get; set; }
+    }
+
+    public enum ArticleType
+    {
+        Carousel,
+        Menu,
+        Common,
+        SmallCover
     }
 
 }
