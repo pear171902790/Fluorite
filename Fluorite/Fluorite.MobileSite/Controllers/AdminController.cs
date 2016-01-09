@@ -68,7 +68,8 @@ namespace Fluorite.MobileSite.Controllers
                         CreateTime = DateTime.Now,
                         SellerId = new Guid(command.SellerId),
                         Title = command.Title,
-                        Valid = true
+                        Valid = true,
+                        Type = (ArticleType)command.Type
                     });
                     db.SaveChanges();
                     transaction.Complete();
@@ -108,7 +109,7 @@ namespace Fluorite.MobileSite.Controllers
         {
             public string Details { get; set; }
             public string SellerId { get; set; }
-
+            public int Type { get; set; }
             public string Title { get; set; }
         }
         public class SellerUICommand

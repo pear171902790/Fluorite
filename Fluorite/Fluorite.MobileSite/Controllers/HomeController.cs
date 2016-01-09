@@ -19,7 +19,10 @@ namespace Fluorite.MobileSite.Controllers
         public ActionResult Seller(string sellerId)
         {
             var guid=new Guid(sellerId);
-            ViewBag.Content = new DB().Articles.Where(x=>x.SellerId==guid).ToList();
+            ViewBag.Crousels = new DB().Articles.Where(x => x.SellerId == guid&&x.Type==ArticleType.Carousel).Take(5).ToList();
+            ViewBag.Commons = new DB().Articles.Where(x => x.SellerId == guid && x.Type == ArticleType.Common).Take(4).ToList();
+            ViewBag.Menus = new DB().Articles.Where(x => x.SellerId == guid && x.Type == ArticleType.Menu).Take(7).ToList();
+            ViewBag.Smalls = new DB().Articles.Where(x => x.SellerId == guid && x.Type == ArticleType.SmallCover).Take(2).ToList();
             return View();
         }
     }

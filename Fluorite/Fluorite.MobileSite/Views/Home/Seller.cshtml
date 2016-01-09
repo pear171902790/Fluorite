@@ -1,12 +1,16 @@
-﻿@{
+﻿@using Fluorite.MobileSite.Data
+@using Fluorite.MobileSite.Models
+@{
     Layout = "~/Views/_Layout.cshtml";
+    var crousels = ViewBag.Crousels as List<Article>;
+    var commons = ViewBag.Commons as List<Article>;
+    var menus = ViewBag.Menus as List<Article>;
+    var smalls = ViewBag.Smalls as List<Article>;
 }
-
 <link href="~/owl.carousel.2.0.0-beta.3/assets/owl.carousel.min.css" rel="stylesheet" />
 <link href="~/owl.carousel.2.0.0-beta.3/assets/owl.theme.default.min.css" rel="stylesheet" />
 <link href="~/Content/index.css" rel="stylesheet" />
 <script src="~/owl.carousel.2.0.0-beta.3/owl.carousel.min.js"></script>
-
 <div class="left fl">
     <div class="left_search">
         <div style="width: 100%; height: 5px;"></div>
@@ -19,13 +23,13 @@
         <div class="cf"></div>
     </div>
     <div class="left_menu">登录</div>
-    <div class="left_menu">菜单1</div>
-    <div class="left_menu">菜单2</div>
-    <div class="left_menu">菜单3</div>
-    <div class="left_menu">菜单4</div>
-    <div class="left_menu">菜单5</div>
-    <div class="left_menu">菜单6</div>
-    <div class="left_menu">菜单7</div>
+    @for (int i = 0; i < 7; i++)
+    {
+        <div class="left_menu">
+            @((menus.NullOrNone()|| !menus.Exist(i)) ? "菜单" + i + 1 : menus[i].Title)
+        </div>
+    }
+
 </div>
 <div class="cover"></div>
 <div class="right fl">
@@ -43,68 +47,38 @@
         </div>
         <div class="cf" style="width: 100%; height: 41px;"></div>
         <div class="owl-carousel owl-theme w100">
-            <div>
-                <img src="~/页面内元素打包/内容元素/大图01.jpg" />
-            </div>
-            <div>
-                <img src="~/页面内元素打包/内容元素/大图02.jpg" />
-            </div>
-            <div>
-                <img src="~/页面内元素打包/内容元素/大图03.jpg" />
-            </div>
-            <div>
-                <img src="~/页面内元素打包/内容元素/大图04.jpg" />
-            </div>
-            <div>
-                <img src="~/页面内元素打包/内容元素/大图05.jpg" />
-            </div>
+            @for (int i = 0; i < 5; i++)
+            {
+                <div>
+                    <img src="@((crousels.NullOrNone() || !crousels.Exist(i)) ? "/Content/df.jpg" : crousels[i].CoverUrl)" />
+                </div>
+            }
         </div>
-
         <div class="content w100">
-            <div class="item">
-                <div class="item_img">
-                    <img src="~/页面内元素打包/内容元素/大图02.jpg" />
+            @for (int i = 0; i < 4; i++)
+            {
+                <div class="item">
+                    
+                    <div class="item_img">
+                        <img src="@((commons.NullOrNone() || !commons.Exist(i)) ? "/Content/df.jpg" : commons[i].CoverUrl)"/>
+                    </div>
+                    <div class="item_text">@((commons.NullOrNone() || !commons.Exist(i)) ? "暂无标题暂无标题暂无标题" : commons[i].Title)</div>
                 </div>
-                <div class="item_text">标题文字标题文字标题文字标题文字</div>
-            </div>
-            <div class="item">
-                <div class="item_img">
-                    <img src="~/页面内元素打包/内容元素/大图03.jpg" />
-                </div>
-                <div class="item_text">标题文字标题文字标题文字标题文字</div>
-            </div>
-            <div class="item">
-                <div class="item_img">
-                    <img src="~/页面内元素打包/内容元素/大图04.jpg" />
-                </div>
-                <div class="item_text">标题文字标题文字标题文字标题文字</div>
-            </div>
-            <div class="item">
-                <div class="item_img">
-                    <img src="~/页面内元素打包/内容元素/大图05.jpg" />
-                </div>
-                <div class="item_text">标题文字标题文字标题文字标题文字</div>
-            </div>
+            }
         </div>
         <div class="foot">
-            <div class="foot_logo">
-                <div class="fl foot_left_logo">
-                    <img src="~/页面内元素打包/内容元素/小LOGO图片01.jpg" />
+            @for (int i = 0; i < 2; i++)
+            {
+                <div class="foot_logo">
+                    <div class="fl foot_left_logo">
+                        <img src="@((smalls.NullOrNone() || !smalls.Exist(i) ) ? "/Content/df.jpg" : smalls[i].CoverUrl)" />
+                    </div>
+                    <div class="fr foot_right_text">
+                        @((smalls.NullOrNone() || !smalls.Exist(i) ) ? "暂无标题暂无标题暂无标题" : smalls[i].Title)
+                    </div>
                 </div>
-                <div class="fr foot_right_text">
-                    标题文字标题文字标题文字
-                </div>
-            </div>
-            <div class="cf"></div>
-            <div class="foot_logo">
-                <div class="fl foot_left_logo">
-
-                    <img src="~/页面内元素打包/内容元素/小LOGO图片02.jpg" />
-                </div>
-                <div class="fr foot_right_text">
-                    标题文字标题文字标题文字
-                </div>
-            </div>
+                <div class="cf"></div>
+            }
             <div class="foot_bottom w100">
                 Fomind
             </div>
