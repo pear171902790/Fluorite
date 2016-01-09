@@ -8,6 +8,7 @@ using Fluorite.MobileSite.Models;
 namespace Fluorite.MobileSite.Controllers
 {
     [CustomAuthorize]
+    [WebHandleErrorAttribute]
     public class AdminController : Controller
     {
         [HttpGet]

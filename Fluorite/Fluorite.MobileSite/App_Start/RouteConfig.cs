@@ -14,6 +14,13 @@ namespace Fluorite.MobileSite
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             routes.IgnoreRoute("{resource}.ashx/{*pathInfo}");
 
+
+            routes.MapRoute(
+                name: "NotFound",
+                url: "404",
+                defaults: new { controller = "Home", action = "NotFound", id = UrlParameter.Optional }
+            );
+
             routes.MapRoute(
                 name: "Admin",
                 url: "gl",

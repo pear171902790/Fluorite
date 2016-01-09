@@ -13,8 +13,16 @@ namespace Fluorite.MobileSite
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            FilterConfig.RegisterGlobalFilters(GlobalConfiguration.Configuration.Filters);
             var list = new DB().Users.Take(1).ToList();
+        }
+        protected void Application_EndRequest()
+        {
+            var statusCode = Context.Response.StatusCode;
+            if (statusCode == 404)
+            {
+                Response.Clear();
+                Response.RedirectToRoute("NotFound");
+            }
         }
     }
 }

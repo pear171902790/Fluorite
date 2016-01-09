@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Security;
 using Fluorite.MobileSite.Models;
 
 namespace Fluorite.MobileSite.Controllers
 {
+    [WebHandleErrorAttribute]
     public class AuthenticationController : Controller
     {
         public ActionResult Logon()
@@ -18,9 +15,9 @@ namespace Fluorite.MobileSite.Controllers
         [HttpPost]
         public ActionResult CheckAuthentication([ModelBinder(typeof(JsonBinder<LogonUICommand>))]LogonUICommand logonUiCommand)
         {
-            if (logonUiCommand.Username != "bjabm" || logonUiCommand.Password != "testSite123")
+            if (logonUiCommand.Username != "b" || logonUiCommand.Password != "1")
             {
-                throw new Exception();
+                throw new LogicException();
             }
             CookieHelper.SetAuthCookie("bjabm", false);
             return new HttpStatusCodeResult(200);
@@ -36,4 +33,6 @@ namespace Fluorite.MobileSite.Controllers
         public string Username { get; set; }
         public string Password { get; set; }
     }
+
+    
 }

@@ -50,7 +50,7 @@
             @for (int i = 0; i < 5; i++)
             {
                 <div>
-                    <img src="@((crousels.NullOrNone() || !crousels.Exist(i)) ? "/Content/df.jpg" : crousels[i].CoverUrl)" />
+                    <img src="@((crousels.NullOrNone() || !crousels.Exist(i)) ? "/Content/nopic.jpg" : crousels[i].CoverUrl)" />
                 </div>
             }
         </div>
@@ -60,7 +60,7 @@
                 <div class="item">
                     
                     <div class="item_img">
-                        <img src="@((commons.NullOrNone() || !commons.Exist(i)) ? "/Content/df.jpg" : commons[i].CoverUrl)"/>
+                        <img src="@((commons.NullOrNone() || !commons.Exist(i)) ? "/Content/nopic.jpg" : commons[i].CoverUrl)"/>
                     </div>
                     <div class="item_text">@((commons.NullOrNone() || !commons.Exist(i)) ? "暂无标题暂无标题暂无标题" : commons[i].Title)</div>
                 </div>
@@ -71,7 +71,7 @@
             {
                 <div class="foot_logo">
                     <div class="fl foot_left_logo">
-                        <img src="@((smalls.NullOrNone() || !smalls.Exist(i) ) ? "/Content/df.jpg" : smalls[i].CoverUrl)" />
+                        <img src="@((smalls.NullOrNone() || !smalls.Exist(i) ) ? "/Content/nopic.jpg" : smalls[i].CoverUrl)" />
                     </div>
                     <div class="fr foot_right_text">
                         @((smalls.NullOrNone() || !smalls.Exist(i) ) ? "暂无标题暂无标题暂无标题" : smalls[i].Title)

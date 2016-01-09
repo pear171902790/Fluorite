@@ -114,12 +114,13 @@
     <Content Include="bootstrap-3.3.6-dist\js\bootstrap.js" />
     <Content Include="bootstrap-3.3.6-dist\js\bootstrap.min.js" />
     <Content Include="bootstrap-3.3.6-dist\js\npm.js" />
+    <Content Include="Content\404.jpg" />
     <Content Include="Content\data-getter.js" />
-    <Content Include="Content\df.jpg" />
     <Content Include="Content\index.css" />
     <Content Include="Content\index.js" />
     <Content Include="Content\jquery-1.9.1.min.js" />
     <Content Include="Content\jquery.uploadify.min.js" />
+    <Content Include="Content\nopic.jpg" />
     <Content Include="Content\uploadify.css" />
     <Content Include="Content\uploadify.swf" />
     <Content Include="Content\放大镜按钮30x30.png" />
@@ -438,7 +439,6 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AuthenticationController.cs" />
-    <Compile Include="HandleExceptionFilterAttribute.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Data\DB.cs" />
@@ -485,6 +485,7 @@
     <Content Include="Views\Home\Seller.cshtml" />
     <Content Include="Views\Admin\Articles.cshtml" />
     <Content Include="Views\Authentication\Logon.cshtml" />
+    <Content Include="Views\Home\NotFound.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
