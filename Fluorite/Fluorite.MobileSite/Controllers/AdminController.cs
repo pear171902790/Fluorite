@@ -82,10 +82,12 @@ namespace Fluorite.MobileSite.Controllers
         [HttpGet]
         public ActionResult Articles(string sellerId)
         {
+            var db=new DB();
             var guid=new Guid(sellerId);
-            var list = new DB().Articles.Where(x=>x.SellerId==guid).OrderByDescending(x => x.CreateTime).ToList();
+            var seller = db.Sellers.SingleOrDefault(x => x.Id == guid);
+            var list = db.Articles.Where(x=>x.SellerId==guid).OrderByDescending(x => x.CreateTime).ToList();
             ViewBag.Articles = list;
-            ViewBag.SellerId = sellerId;
+            ViewBag.Seller = seller;
             return View();
         }
 

@@ -33,7 +33,7 @@
                     <td>@seller.Name</td>
                     <td>@seller.CreateTime.ToShortDateString()</td>
                     <td>
-                        <a class="btn btn-primary" href="@Url.Action("Articles",new {sellerId=seller.Id})">管理</a>
+                        <a class="btn btn-primary" href="@Url.Action("Articles",new {sellerId=seller.Id})">编辑</a>
                         <input type="button" value="删除" class="btn btn-danger" />
                     </td>
                 </tr>
