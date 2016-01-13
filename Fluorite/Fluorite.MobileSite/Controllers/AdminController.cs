@@ -43,10 +43,30 @@ namespace Fluorite.MobileSite.Controllers
             }
             return new HttpStatusCodeResult(200);
         }
+
+        [HttpPost]
+        public ActionResult EditSeller([ModelBinder(typeof(JsonBinder<SellerUICommand>))]SellerUICommand sellerUiCommand)
+        {
+            using (var db = new DB())
+            {
+                using (var transaction = new TransactionScope())
+                {
+                    var seller = db.Sellers.SingleOrDefault(x => x.Id == new Guid(sellerUiCommand.Id));
+                    seller.Name = sellerUiCommand.Name;
+                    seller.Contacts = sellerUiCommand.Contacts;
+                    seller.CreateTime = DateTime.Now;
+                    seller.Remarks = sellerUiCommand.Remarks;
+                    seller.Tel = sellerUiCommand.Tel;
+                    db.SaveChanges();
+                    transaction.Complete();
+                }
+            }
+            return new HttpStatusCodeResult(200);
+        }
         [HttpGet]
         public ActionResult AddArticle(string sellerId)
         {
-            ViewBag.SellerId = sellerId;
+            ViewBag.Seller = new DB().Sellers.SingleOrDefault(x => x.Id == new Guid(sellerId));
             return View();
         }
         [HttpGet]
@@ -82,17 +102,15 @@ namespace Fluorite.MobileSite.Controllers
         [HttpGet]
         public ActionResult Articles(string sellerId)
         {
-            var db=new DB();
             var guid=new Guid(sellerId);
-            var seller = db.Sellers.SingleOrDefault(x => x.Id == guid);
-            var list = db.Articles.Where(x=>x.SellerId==guid).OrderByDescending(x => x.CreateTime).ToList();
-            ViewBag.Articles = list;
+            var seller = new DB().Sellers.SingleOrDefault(x => x.Id == guid);
+            ViewBag.Articles = seller.Articles.OrderByDescending(x => x.CreateTime).ToList();
             ViewBag.Seller = seller;
             return View();
         }
 
         [HttpPost]
-        public ActionResult SaveImage(string sellerId)
+        public ActionResult SaveImage()
         {
             var httpPostedFile = Request.Files[0];
             var imageName = Guid.NewGuid() + ".jpg";
@@ -114,9 +132,12 @@ namespace Fluorite.MobileSite.Controllers
             public string SellerId { get; set; }
             public int Type { get; set; }
             public string Title { get; set; }
+
+            public string ImageName { get; set; }
         }
         public class SellerUICommand
         {
+            public string Id { get; set; }
             public string Name { get; set; }
             public string Contacts { get; set; }
             public string Tel { get; set; }

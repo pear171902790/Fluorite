@@ -39,7 +39,7 @@ namespace Fluorite.MobileSite.Data
         public string Contacts { get; set; }
         public DateTime CreateTime { get; set; }
         public bool Valid { get; set; }
-        public virtual List<Article> Article { get; set; }
+        public virtual List<Article> Articles { get; set; }
     }
     public class Article
     {
