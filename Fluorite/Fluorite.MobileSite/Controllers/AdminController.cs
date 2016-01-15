@@ -14,7 +14,7 @@ namespace Fluorite.MobileSite.Controllers
         [HttpGet]
         public ActionResult Seller()
         {
-            var list = new DB().Sellers.OrderByDescending(x => x.CreateTime).ToList();
+            var list = new DB().Sellers.Where(x=>x.Valid).OrderByDescending(x => x.CreateTime).ToList();
             ViewBag.Sellers = list;
             return View();
         }
@@ -78,6 +78,20 @@ namespace Fluorite.MobileSite.Controllers
         [HttpPost]
         public ActionResult AddArticle([ModelBinder(typeof(JsonBinder<AddArticleUICommand>))]AddArticleUICommand command)
         {
+            var coverUrl = "/Content/nopic.jpg";
+            if (!string.IsNullOrEmpty(command.ImageName))
+            {
+                string sourceFile = Server.MapPath("~/temp/"+command.ImageName);
+                var sellerFolderName = command.SellerId.Replace("-", String.Empty);
+                string destinationPath = Server.MapPath("~/Content/" + sellerFolderName+"/");
+                if (!System.IO.Directory.Exists(destinationPath))
+                {
+                    System.IO.Directory.CreateDirectory(destinationPath);
+                }
+                string destinationFile = System.IO.Path.Combine(destinationPath, command.ImageName);
+                System.IO.File.Move(sourceFile, destinationFile);
+                coverUrl = "/Content/" + sellerFolderName + "/" + command.ImageName;
+            }
             using (var db = new DB())
             {
                 using (var transaction = new TransactionScope())
@@ -90,7 +104,8 @@ namespace Fluorite.MobileSite.Controllers
                         SellerId = new Guid(command.SellerId),
                         Title = command.Title,
                         Valid = true,
-                        Type = (ArticleType)command.Type
+                        Type = (ArticleType)command.Type,
+                        CoverUrl = coverUrl
                     });
                     db.SaveChanges();
                     transaction.Complete();
@@ -142,6 +157,21 @@ namespace Fluorite.MobileSite.Controllers
             public string Contacts { get; set; }
             public string Tel { get; set; }
             public string Remarks { get; set; }
+        }
+
+        public ActionResult DeleteSeller(string id)
+        {
+            using (var db = new DB())
+            {
+                using (var transaction = new TransactionScope())
+                {
+                    var seller = db.Sellers.SingleOrDefault(x => x.Id == new Guid(id));
+                    seller.Valid = false;
+                    db.SaveChanges();
+                    transaction.Complete();
+                }
+            }
+            return new HttpStatusCodeResult(200);
         }
     }
 }

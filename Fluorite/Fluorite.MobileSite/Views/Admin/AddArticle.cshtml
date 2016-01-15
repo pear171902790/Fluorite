@@ -14,7 +14,7 @@
 </ol>
 <form id="form_add_article" style="width: 60%; ">
     <div class="form-group">
-        <label>文章封面显示位置</label>
+        <label>文章入口位置</label>
         <select name="Type" class="form-control">
             <option value="@ArticleType.Carousel">轮播大图</option>
             <option value="@ArticleType.Common">页面中部</option>
@@ -25,7 +25,7 @@
     <div class="form-group">
         <label>文章标题</label>
         <input type="text" class="form-control" name="Name" placeholder="商户名称">
-        <input type="hidden" name="ImageName">
+        <input type="hidden" name="ImageName" id="ImageName">
     </div>
     <div class="form-group">
         <label>封面图片</label><br/>
