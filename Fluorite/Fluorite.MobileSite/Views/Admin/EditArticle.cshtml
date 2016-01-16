@@ -1,8 +1,9 @@
 ﻿@using Fluorite.MobileSite.Data
 @{
     Layout = "~/Views/_AdminLayout.cshtml";
-    ViewBag.Title = "添加文章";
-    var seller = ViewBag.Seller as Seller;
+    var article = ViewBag.Article as Article;
+    ViewBag.Title = article.Title;
+    var seller = article.Seller;
 }
 <link href="~/Content/uploadify.css" rel="stylesheet" />
 
@@ -10,35 +11,44 @@
 <ol class="breadcrumb">
     <li><a href="/gl">商家管理</a></li>
     <li><a href="/Admin/Articles?sellerId=@seller.Id" id="toSeller">@seller.Name</a></li>
-    <li class="active">添加文章</li>
+    <li class="active">@article.Title</li>
 </ol>
 <form id="form_add_article" style="width: 60%; ">
     <div class="form-group">
         <label>文章入口位置</label>
         <select name="Type" class="form-control">
-            <option value="@((int)ArticleType.Carousel)">轮播大图</option>
-            <option value="@((int)ArticleType.Common)">页面中部</option>
-            <option value="@((int)ArticleType.Menu)">左侧菜单</option>
-            <option value="@((int)ArticleType.SmallCover)">页面底部</option>
+            <option value="@((int)ArticleType.Carousel)" @(article.Type==ArticleType.Carousel?"selected":String.Empty)>轮播大图</option>
+            <option value="@((int)ArticleType.Common)" @(article.Type == ArticleType.Common ? "selected" : String.Empty)>页面中部</option>
+            <option value="@((int)ArticleType.Menu)" @(article.Type == ArticleType.Menu ? "selected" : String.Empty)>左侧菜单</option>
+            <option value="@((int)ArticleType.SmallCover)" @(article.Type == ArticleType.SmallCover ? "selected" : String.Empty)>页面底部</option>
         </select>
     </div>
     <div class="form-group">
         <label>文章标题</label>
-        <input type="text" class="form-control" name="Title">
+        <input type="text" class="form-control" name="Title" value="@article.Title">
         <input type="hidden" name="ImageName" id="ImageName">
         <input type="hidden" name="SellerId" value="@seller.Id">
+        <input type="hidden" name="Id" value="@article.Id">
     </div>
     <div class="form-group">
-        <label>封面图片</label><br />
-        <img id="cover" style="display: none" /><br /><br />
+        <label>封面图片</label><br/>
+        @if (string.IsNullOrEmpty(article.CoverUrl))
+        {
+            <img id="cover" style="display: none"/>
+        }
+        else
+        {
+            <img id="cover" src="@article.CoverUrl" />
+        }
+        <br /><br />
         <input type="file" name="file_upload" id="file_upload" />
     </div>
     <div class="form-group">
         <label>说明</label>
-        <textarea class="form-control" rows="3" name="Remarks"></textarea>
+        <textarea class="form-control" rows="3" name="Remarks">@article.Remarks</textarea>
         <div class="checkbox">
             <label>
-                <input type="checkbox" onchange="check()" id="IsExternal" /> 外站链接
+                <input type="checkbox" onchange="check()" id="IsExternal" @(article.IsExternal?"checked":string.Empty)/> 外站链接
             </label>
         </div>
     </div>
@@ -49,7 +59,7 @@
     </div>
     <div class="form-group external">
         <label>外站网址</label>
-        <input type="text" class="form-control" name="ExternalUrl">
+        <input type="text" class="form-control" name="ExternalUrl" value="@article.ExternalUrl">
     </div>
     <a class="btn btn-primary" onclick="add()">提交</a>
 </form>
@@ -67,14 +77,16 @@
         autoHeightEnabled: true,
         autoFloatEnabled: true
     });
-    
+    ue.ready(function () {
+        ue.setContent('@Html.Raw(article.Content)');
+    });
     var add = function () {
         var article = $('#form_add_article').serializeObject();
         article.details = ue.getContent();
         article.IsExternal = document.getElementById('IsExternal').checked;
         $.ajax({
-            url: '@Url.Action("AddArticle", "Admin")',
-            type:'post',
+            url: '@Url.Action("EditArticle", "Admin")',
+            type: 'post',
             data: JSON.stringify(article),
             success: function () {
                 alert('成功');
@@ -87,7 +99,7 @@
     };
     $('#file_upload').uploadify({
         'multi': false,
-        'buttonText': '上传封面',
+        'buttonText': '@(string.IsNullOrEmpty(article.CoverUrl) ? "上传封面" : "更换封面？")',
         'swf': '@Url.Content("~/Content/uploadify.swf")',
         'uploader': '@Url.Action("SaveImage")',
         'onUploadSuccess': function (file, data, response) {

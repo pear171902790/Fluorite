@@ -17,19 +17,22 @@ namespace Fluorite.MobileSite.Controllers
             return View();
         }
 
-        public ActionResult Seller(string sellerId)
+        public ActionResult Seller(string sellerName)
         {
-            var guid = new Guid(sellerId);
-            ViewBag.Crousels =
-                new DB().Articles.Where(x => x.SellerId == guid && x.Type == ArticleType.Carousel).Take(5).ToList();
-            ViewBag.Commons =
-                new DB().Articles.Where(x => x.SellerId == guid && x.Type == ArticleType.Common).Take(4).ToList();
-            ViewBag.Menus =
-                new DB().Articles.Where(x => x.SellerId == guid && x.Type == ArticleType.Menu).Take(7).ToList();
-            ViewBag.Smalls =
-                new DB().Articles.Where(x => x.SellerId == guid && x.Type == ArticleType.SmallCover)
-                    .Take(2)
-                    .ToList();
+            using (var db = new DB())
+            {
+                var seller = db.Sellers.FirstOrDefault(x => x.Name == sellerName);
+                ViewBag.Crousels =
+                    seller.Articles.Where(x => x.Type == ArticleType.Carousel).Take(5).ToList();
+                ViewBag.Commons =
+                    seller.Articles.Where(x => x.Type == ArticleType.Common).Take(4).ToList();
+                ViewBag.Menus =
+                    seller.Articles.Where(x => x.Type == ArticleType.Menu).Take(7).ToList();
+                ViewBag.Smalls =
+                    seller.Articles.Where(x => x.Type == ArticleType.SmallCover)
+                        .Take(2)
+                        .ToList();
+            }
             return View();
         }
 

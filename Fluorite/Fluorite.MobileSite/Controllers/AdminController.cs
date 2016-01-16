@@ -14,7 +14,8 @@ namespace Fluorite.MobileSite.Controllers
         [HttpGet]
         public ActionResult Seller()
         {
-            var list = new DB().Sellers.Where(x=>x.Valid).OrderByDescending(x => x.CreateTime).ToList();
+            var list = new DB().Sellers.Where(x => x.Valid).OrderByDescending(x => x.CreateTime).ToList();
+            ViewBag.Host = Request.Url.Authority;
             ViewBag.Sellers = list;
             return View();
         }
@@ -72,18 +73,55 @@ namespace Fluorite.MobileSite.Controllers
         [HttpGet]
         public ActionResult EditArticle(string articleId)
         {
-            return View("AddArticle");
+            ViewBag.Article = new DB().Articles.SingleOrDefault(x => x.Id == new Guid(articleId));
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult EditArticle([ModelBinder(typeof(JsonBinder<EditArticleUICommand>))]EditArticleUICommand command)
+        {
+            var coverUrl = string.Empty;
+            if (!string.IsNullOrEmpty(command.ImageName))
+            {
+                string sourceFile = Server.MapPath("~/temp/" + command.ImageName);
+                var sellerFolderName = command.SellerId.Replace("-", String.Empty);
+                string destinationPath = Server.MapPath("~/Content/" + sellerFolderName + "/");
+                if (!System.IO.Directory.Exists(destinationPath))
+                {
+                    System.IO.Directory.CreateDirectory(destinationPath);
+                }
+                string destinationFile = System.IO.Path.Combine(destinationPath, command.ImageName);
+                System.IO.File.Move(sourceFile, destinationFile);
+                coverUrl = "/Content/" + sellerFolderName + "/" + command.ImageName;
+            }
+            using (var db = new DB())
+            {
+                using (var transaction = new TransactionScope())
+                {
+                    var article = db.Articles.SingleOrDefault(x => x.Id == new Guid(command.Id));
+                    article.Content = command.Details;
+                    article.Title = command.Title;
+                    article.Type = (ArticleType) command.Type;
+                    article.CoverUrl = string.IsNullOrEmpty(coverUrl) ? article.CoverUrl : coverUrl;
+                    article.ExternalUrl = command.ExternalUrl;
+                    article.IsExternal = command.IsExternal;
+                    article.Remarks = command.Remarks;
+                    db.SaveChanges();
+                    transaction.Complete();
+                }
+            }
+            return new HttpStatusCodeResult(200);
         }
 
         [HttpPost]
         public ActionResult AddArticle([ModelBinder(typeof(JsonBinder<AddArticleUICommand>))]AddArticleUICommand command)
         {
-            var coverUrl = "/Content/nopic.jpg";
+            var coverUrl = string.Empty;
             if (!string.IsNullOrEmpty(command.ImageName))
             {
-                string sourceFile = Server.MapPath("~/temp/"+command.ImageName);
+                string sourceFile = Server.MapPath("~/temp/" + command.ImageName);
                 var sellerFolderName = command.SellerId.Replace("-", String.Empty);
-                string destinationPath = Server.MapPath("~/Content/" + sellerFolderName+"/");
+                string destinationPath = Server.MapPath("~/Content/" + sellerFolderName + "/");
                 if (!System.IO.Directory.Exists(destinationPath))
                 {
                     System.IO.Directory.CreateDirectory(destinationPath);
@@ -98,14 +136,17 @@ namespace Fluorite.MobileSite.Controllers
                 {
                     db.Articles.Add(new Article()
                     {
-                        Id=Guid.NewGuid(),
+                        Id = Guid.NewGuid(),
                         Content = command.Details,
                         CreateTime = DateTime.Now,
                         SellerId = new Guid(command.SellerId),
                         Title = command.Title,
                         Valid = true,
                         Type = (ArticleType)command.Type,
-                        CoverUrl = coverUrl
+                        CoverUrl = string.IsNullOrEmpty(coverUrl) ? "/Content/nopic.jpg" : coverUrl,
+                        ExternalUrl = command.ExternalUrl,
+                        IsExternal = command.IsExternal,
+                        Remarks = command.Remarks
                     });
                     db.SaveChanges();
                     transaction.Complete();
@@ -117,9 +158,8 @@ namespace Fluorite.MobileSite.Controllers
         [HttpGet]
         public ActionResult Articles(string sellerId)
         {
-            var guid=new Guid(sellerId);
+            var guid = new Guid(sellerId);
             var seller = new DB().Sellers.SingleOrDefault(x => x.Id == guid);
-            ViewBag.Articles = seller.Articles.OrderByDescending(x => x.CreateTime).ToList();
             ViewBag.Seller = seller;
             return View();
         }
@@ -129,7 +169,7 @@ namespace Fluorite.MobileSite.Controllers
         {
             var httpPostedFile = Request.Files[0];
             var imageName = Guid.NewGuid() + ".jpg";
-            var virtualPath ="~/temp/" + imageName;
+            var virtualPath = "~/temp/" + imageName;
             var fullPath = Server.MapPath(virtualPath);
             if (System.IO.File.Exists(fullPath))
             {
@@ -139,16 +179,29 @@ namespace Fluorite.MobileSite.Controllers
             return Content(imageName);
         }
 
-        
-
-        public class AddArticleUICommand 
+        public class AddArticleUICommand
         {
+            public bool IsExternal { get; set; }
+            public string Remarks { get; set; }
             public string Details { get; set; }
             public string SellerId { get; set; }
             public int Type { get; set; }
             public string Title { get; set; }
-
+            public string ExternalUrl { get; set; }
             public string ImageName { get; set; }
+        }
+
+        public class EditArticleUICommand
+        {
+            public bool IsExternal { get; set; }
+            public string Remarks { get; set; }
+            public string Details { get; set; }
+            public string SellerId { get; set; }
+            public int Type { get; set; }
+            public string Title { get; set; }
+            public string ExternalUrl { get; set; }
+            public string ImageName { get; set; }
+            public string Id { get; set; }
         }
         public class SellerUICommand
         {
@@ -167,6 +220,21 @@ namespace Fluorite.MobileSite.Controllers
                 {
                     var seller = db.Sellers.SingleOrDefault(x => x.Id == new Guid(id));
                     seller.Valid = false;
+                    db.SaveChanges();
+                    transaction.Complete();
+                }
+            }
+            return new HttpStatusCodeResult(200);
+        }
+
+        public ActionResult DeleteArticle(string id)
+        {
+            using (var db = new DB())
+            {
+                using (var transaction = new TransactionScope())
+                {
+                    var article = db.Articles.SingleOrDefault(x => x.Id == new Guid(id));
+                    article.Valid = false;
                     db.SaveChanges();
                     transaction.Complete();
                 }

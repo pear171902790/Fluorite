@@ -15,7 +15,7 @@ namespace Fluorite.MobileSite.Controllers
         [HttpPost]
         public ActionResult CheckAuthentication([ModelBinder(typeof(JsonBinder<LogonUICommand>))]LogonUICommand logonUiCommand)
         {
-            if (logonUiCommand.Username != "b" || logonUiCommand.Password != "1")
+            if (logonUiCommand.Username != "bjabm" || logonUiCommand.Password != "testSite123")
             {
                 throw new LogicException();
             }

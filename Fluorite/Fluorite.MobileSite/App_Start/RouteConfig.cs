@@ -22,6 +22,12 @@ namespace Fluorite.MobileSite
             );
 
             routes.MapRoute(
+                name: "Seller",
+                url: "s/{sellerName}",
+                defaults: new { controller = "Home", action = "Seller" }
+            );
+
+            routes.MapRoute(
                 name: "Admin",
                 url: "gl",
                 defaults: new { controller = "Admin", action = "Seller", id = UrlParameter.Optional }

@@ -13,6 +13,8 @@ namespace Fluorite.MobileSite.Data
             : base("name=Fluorite")
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<DB, Migrations.Configuration>());
+            Configuration.ProxyCreationEnabled = true;
+            Configuration.LazyLoadingEnabled = true;
         }
         public DbSet<User> Users { get; set; }
         public DbSet<Seller> Sellers { get; set; }
@@ -53,8 +55,9 @@ namespace Fluorite.MobileSite.Data
         public Guid SellerId { get; set; }
         public virtual Seller Seller { get; set; }
         public string CoverUrl { get; set; }
-        
+        public string ExternalUrl { get; set; }
         public ArticleType Type { get; set; }
+        public bool IsExternal { get; set; }
     }
 
     public enum ArticleType

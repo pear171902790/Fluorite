@@ -4,6 +4,7 @@
     Layout = "~/Views/_AdminLayout.cshtml";
     ViewBag.Title = "商家管理";
     var sellers = ViewBag.Sellers as List<Seller>;
+    var host = ViewBag.Host as string;
 }
 <style>
     h1 {
@@ -23,6 +24,7 @@
         <tr>
             <th>商家名称</th>
             <th>创建时间</th>
+            <th>链接地址</th>
             <th>操作</th>
         </tr>
         @if (sellers != null && sellers.Any())
@@ -32,6 +34,7 @@
                 <tr>
                     <td>@seller.Name</td>
                     <td>@seller.CreateTime.ToShortDateString()</td>
+                    <td>@("http://"+host+"/s/"+ seller.Name)</td>
                     <td>
                         <a class="btn btn-primary" href="@Url.Action("Articles",new {sellerId=seller.Id})">编辑</a>
                         <input type="button" value="删除" class="btn btn-danger" onclick="del('@seller.Id')" />
