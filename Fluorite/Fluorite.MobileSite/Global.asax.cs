@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Data.Entity;
+using System.Linq;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
@@ -13,6 +14,7 @@ namespace Fluorite.MobileSite
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<DB, Migrations.Configuration>());
             var list = new DB().Users.Take(1).ToList();
         }
         protected void Application_EndRequest()

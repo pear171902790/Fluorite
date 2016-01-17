@@ -12,7 +12,6 @@ namespace Fluorite.MobileSite.Data
         public DB()
             : base("name=Fluorite")
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<DB, Migrations.Configuration>());
             Configuration.ProxyCreationEnabled = true;
             Configuration.LazyLoadingEnabled = true;
         }
