@@ -9,7 +9,13 @@
 }
 <link href="~/owl.carousel.2.0.0-beta.3/assets/owl.carousel.min.css" rel="stylesheet" />
 <link href="~/owl.carousel.2.0.0-beta.3/assets/owl.theme.default.min.css" rel="stylesheet" />
-<link href="~/Content/index.css" rel="stylesheet" />
+<link href="~/Content/index.css" rel="stylesheet"/>
+<style>
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+</style>
 <script src="~/owl.carousel.2.0.0-beta.3/owl.carousel.min.js"></script>
 <div class="left fl">
     <div class="left_search">
@@ -26,7 +32,9 @@
     @for (int i = 0; i < 7; i++)
     {
         <div class="left_menu">
-            @((menus.NullOrNone()|| !menus.Exist(i)) ? "菜单" + (i + 1) : menus[i].Title)
+            <a href="@((menus.NullOrNone() || !menus.Exist(i)) ? "javascript:void(0)" :Url.Action("Article")+"?articleId="+ menus[i].Id)">
+                @((menus.NullOrNone() || !menus.Exist(i)) ? "菜单" + (i + 1) : menus[i].Title)
+            </a>
         </div>
     }
 
@@ -50,7 +58,9 @@
             @for (int i = 0; i < 5; i++)
             {
                 <div>
-                    <img src="@((crousels.NullOrNone() || !crousels.Exist(i)) ? "/Content/nopic.jpg" : crousels[i].CoverUrl)" />
+                    <a href="@((crousels.NullOrNone() || !crousels.Exist(i)) ? "javascript:void(0)" : Url.Action("Article") + "?articleId=" + crousels[i].Id)">
+                        <img src="@((crousels.NullOrNone() || !crousels.Exist(i)) ? "/Content/nopic.jpg" : crousels[i].CoverUrl)" />
+                    </a>
                 </div>
             }
         </div>
@@ -58,11 +68,17 @@
             @for (int i = 0; i < 4; i++)
             {
                 <div class="item">
-                    
+
                     <div class="item_img">
-                        <img src="@((commons.NullOrNone() || !commons.Exist(i)) ? "/Content/nopic.jpg" : commons[i].CoverUrl)"/>
+                        <a href="@((commons.NullOrNone() || !commons.Exist(i)) ? "javascript:void(0)" : Url.Action("Article") + "?articleId=" + commons[i].Id)">
+                            <img src="@((commons.NullOrNone() || !commons.Exist(i)) ? "/Content/nopic.jpg" : commons[i].CoverUrl)" />
+                        </a>
                     </div>
-                    <div class="item_text">@((commons.NullOrNone() || !commons.Exist(i)) ? "暂无标题暂无标题暂无标题" : commons[i].Title)</div>
+                    <div class="item_text">
+                        <a href="@((commons.NullOrNone() || !commons.Exist(i)) ? "javascript:void(0)" : Url.Action("Article") + "?articleId=" + commons[i].Id)">
+                            @((commons.NullOrNone() || !commons.Exist(i)) ? "暂无标题暂无标题暂无标题" : commons[i].Title)
+                        </a>
+                    </div>
                 </div>
             }
         </div>
@@ -71,10 +87,14 @@
             {
                 <div class="foot_logo">
                     <div class="fl foot_left_logo">
-                        <img src="@((smalls.NullOrNone() || !smalls.Exist(i) ) ? "/Content/nopic.jpg" : smalls[i].CoverUrl)" />
+                        <a href="@((smalls.NullOrNone() || !smalls.Exist(i)) ? "javascript:void(0)" : Url.Action("Article") + "?articleId=" + smalls[i].Id)">
+                            <img src="@((smalls.NullOrNone() || !smalls.Exist(i)) ? "/Content/nopic.jpg" : smalls[i].CoverUrl)" />
+                        </a>
                     </div>
                     <div class="fr foot_right_text">
-                        @((smalls.NullOrNone() || !smalls.Exist(i) ) ? "暂无标题暂无标题暂无标题" : smalls[i].Title)
+                        <a href="@((smalls.NullOrNone() || !smalls.Exist(i)) ? "javascript:void(0)" : Url.Action("Article") + "?articleId=" + smalls[i].Id)">
+                            @((smalls.NullOrNone() || !smalls.Exist(i)) ? "暂无标题暂无标题暂无标题" : smalls[i].Title)
+                        </a>
                     </div>
                 </div>
                 <div class="cf"></div>

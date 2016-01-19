@@ -40,5 +40,20 @@ namespace Fluorite.MobileSite.Controllers
         {
             return View();
         }
+
+        public ActionResult Article(string articleId)
+        {
+            Article article;
+            using (var db = new DB())
+            {
+                article = db.Articles.SingleOrDefault(x => x.Id == new Guid(articleId));
+            }
+            if (!string.IsNullOrEmpty(article.ExternalUrl))
+            {
+                return new RedirectResult(article.ExternalUrl);
+            }
+
+            return View(article);
+        }
     }
 }

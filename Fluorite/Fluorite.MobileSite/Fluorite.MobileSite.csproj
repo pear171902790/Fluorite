@@ -492,6 +492,7 @@
     <Content Include="Views\Home\NotFound.cshtml" />
     <Content Include="Views\Admin\EditArticle.cshtml" />
     <None Include="Properties\PublishProfiles\Fluorite.pubxml" />
+    <Content Include="Views\Home\Article.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
