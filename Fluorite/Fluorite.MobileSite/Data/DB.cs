@@ -57,6 +57,7 @@ namespace Fluorite.MobileSite.Data
         public string ExternalUrl { get; set; }
         public ArticleType Type { get; set; }
         public bool IsExternal { get; set; }
+        public string Order { get; set; }
     }
 
     public enum ArticleType

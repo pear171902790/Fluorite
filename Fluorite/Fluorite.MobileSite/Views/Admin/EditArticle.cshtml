@@ -15,7 +15,7 @@
 </ol>
 <form id="form_add_article" style="width: 60%; ">
     <div class="form-group">
-        <label>文章入口位置</label>
+        <label>商品入口位置</label>
         <select name="Type" class="form-control">
             <option value="@((int)ArticleType.Carousel)" @(article.Type==ArticleType.Carousel?"selected":String.Empty)>轮播大图</option>
             <option value="@((int)ArticleType.Common)" @(article.Type == ArticleType.Common ? "selected" : String.Empty)>页面中部</option>
@@ -24,7 +24,7 @@
         </select>
     </div>
     <div class="form-group">
-        <label>文章标题</label>
+        <label>商品标题</label>
         <input type="text" class="form-control" name="Title" value="@article.Title">
         <input type="hidden" name="ImageName" id="ImageName">
         <input type="hidden" name="SellerId" value="@seller.Id">
@@ -57,6 +57,11 @@
         <script id="container" name="content" type="text/plain">
         </script>
     </div>
+    <div class="form-group details">
+        <label>预约界面</label>
+        <script id="order" name="order" type="text/plain">
+        </script>
+    </div>
     <div class="form-group external">
         <label>外站网址</label>
         <input type="text" class="form-control" name="ExternalUrl" value="@article.ExternalUrl">
@@ -77,12 +82,22 @@
         autoHeightEnabled: true,
         autoFloatEnabled: true
     });
+    var order = UE.getEditor('order', {
+        toolbars: [
+['fullscreen', 'source', 'undo', 'redo'],
+['bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', 'simpleupload']
+        ],
+        autoHeightEnabled: true,
+        autoFloatEnabled: true
+    });
     ue.ready(function () {
         ue.setContent('@Html.Raw(article.Content)');
+        order.setContent('@Html.Raw(article.Order)');
     });
     var add = function () {
         var article = $('#form_add_article').serializeObject();
         article.details = ue.getContent();
+        article.order = order.getContent();
         article.IsExternal = document.getElementById('IsExternal').checked;
         $.ajax({
             url: '@Url.Action("EditArticle", "Admin")',

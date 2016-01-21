@@ -1,7 +1,7 @@
 ﻿@using Fluorite.MobileSite.Data
 @{
     Layout = "~/Views/_AdminLayout.cshtml";
-    ViewBag.Title = "添加文章";
+    ViewBag.Title = "添加商品";
     var seller = ViewBag.Seller as Seller;
 }
 <link href="~/Content/uploadify.css" rel="stylesheet" />
@@ -10,11 +10,11 @@
 <ol class="breadcrumb">
     <li><a href="/gl">商家管理</a></li>
     <li><a href="/Admin/Articles?sellerId=@seller.Id" id="toSeller">@seller.Name</a></li>
-    <li class="active">添加文章</li>
+    <li class="active">添加商品</li>
 </ol>
 <form id="form_add_article" style="width: 60%; ">
     <div class="form-group">
-        <label>文章入口位置</label>
+        <label>商品入口位置</label>
         <select name="Type" class="form-control">
             <option value="@((int)ArticleType.Carousel)">轮播大图</option>
             <option value="@((int)ArticleType.Common)">页面中部</option>
@@ -23,7 +23,7 @@
         </select>
     </div>
     <div class="form-group">
-        <label>文章标题</label>
+        <label>商品标题</label>
         <input type="text" class="form-control" name="Title">
         <input type="hidden" name="ImageName" id="ImageName">
         <input type="hidden" name="SellerId" value="@seller.Id">
@@ -47,6 +47,11 @@
         <script id="container" name="content" type="text/plain">
         </script>
     </div>
+    <div class="form-group details">
+        <label>预约界面</label>
+        <script id="order" name="order" type="text/plain">
+        </script>
+    </div>
     <div class="form-group external">
         <label>外站网址</label>
         <input type="text" class="form-control" name="ExternalUrl">
@@ -67,10 +72,19 @@
         autoHeightEnabled: true,
         autoFloatEnabled: true
     });
-    
+    var order = UE.getEditor('order', {
+        toolbars: [
+['fullscreen', 'source', 'undo', 'redo'],
+['bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', 'simpleupload']
+        ],
+        autoHeightEnabled: true,
+        autoFloatEnabled: true
+    });
+
     var add = function () {
         var article = $('#form_add_article').serializeObject();
         article.details = ue.getContent();
+        article.order = order.getContent();
         article.IsExternal = document.getElementById('IsExternal').checked;
         $.ajax({
             url: '@Url.Action("AddArticle", "Admin")',
