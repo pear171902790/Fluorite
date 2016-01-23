@@ -24,7 +24,7 @@ namespace Fluorite.MobileSite
             }
             else
             {
-                filterContext.Result = new RedirectToRouteResult("NotFound", null);
+                filterContext.Result = new HttpNotFoundResult();
             }
         }
     }
