@@ -10,8 +10,7 @@ namespace Fluorite.MobileSite
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
-            filters.Add(new WebHandleErrorAttribute(),1);
-            filters.Add(new HandleErrorAttribute(),2);
+            filters.Add(new WebHandleErrorAttribute());
         }
     }
     public class WebHandleErrorAttribute : HandleErrorAttribute
