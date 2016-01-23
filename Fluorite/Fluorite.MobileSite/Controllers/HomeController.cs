@@ -9,7 +9,6 @@ using Fluorite.MobileSite.Data;
 
 namespace Fluorite.MobileSite.Controllers
 {
-    [WebHandleErrorAttribute]
     public class HomeController : Controller
     {
         public ActionResult Index()

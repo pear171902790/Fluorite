@@ -4,7 +4,6 @@ using Fluorite.MobileSite.Models;
 
 namespace Fluorite.MobileSite.Controllers
 {
-    [WebHandleErrorAttribute]
     public class AuthenticationController : Controller
     {
         public ActionResult Logon()
