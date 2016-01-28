@@ -37,6 +37,7 @@
     setResponsiveValue($('.search_button img'), [3], ['margin-top']);
     setResponsiveValue($('div.content'), [15], ['margin-top', 'margin-bottom']);
     setResponsiveValue($('div.item'), [10], ['margin-top', 'margin-bottom']);
+    setResponsiveValue($('div.dot_wrap'), [130, 24, 27], ['width', 'height', 'bottom']);
 
 
     var showLeftMenu = function () {
@@ -64,7 +65,7 @@
     $(".owl-carousel").owlCarousel({
         autoplay: true,
         items: 1,
-        loop: true,
+        loop: false,
         dots: true
     });
     $('.left').on('touchmove', function (event) {
