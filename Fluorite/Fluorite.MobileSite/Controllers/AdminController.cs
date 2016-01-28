@@ -47,6 +47,20 @@ namespace Fluorite.MobileSite.Controllers
         [HttpPost]
         public ActionResult EditSeller([ModelBinder(typeof(JsonBinder<SellerUICommand>))]SellerUICommand sellerUiCommand)
         {
+            var logoUrl = string.Empty;
+            if (!string.IsNullOrEmpty(sellerUiCommand.ImageName))
+            {
+                string sourceFile = Server.MapPath("~/temp/" + sellerUiCommand.ImageName);
+                var sellerFolderName = sellerUiCommand.Id.Replace("-", String.Empty);
+                string destinationPath = Server.MapPath("~/Content/" + sellerFolderName + "/");
+                if (!System.IO.Directory.Exists(destinationPath))
+                {
+                    System.IO.Directory.CreateDirectory(destinationPath);
+                }
+                string destinationFile = System.IO.Path.Combine(destinationPath, sellerUiCommand.ImageName);
+                System.IO.File.Move(sourceFile, destinationFile);
+                logoUrl = "/Content/" + sellerFolderName + "/" + sellerUiCommand.ImageName;
+            }
             using (var db = new DB())
             {
                 using (var transaction = new TransactionScope())
@@ -57,6 +71,8 @@ namespace Fluorite.MobileSite.Controllers
                     seller.CreateTime = DateTime.Now;
                     seller.Remarks = sellerUiCommand.Remarks;
                     seller.Tel = sellerUiCommand.Tel;
+                    seller.LogoUrl = logoUrl;
+                    seller.LogoText = sellerUiCommand.LogoText;
                     db.SaveChanges();
                     transaction.Complete();
                 }
@@ -213,6 +229,8 @@ namespace Fluorite.MobileSite.Controllers
             public string Contacts { get; set; }
             public string Tel { get; set; }
             public string Remarks { get; set; }
+            public string ImageName { get; set; }
+            public string LogoText { get; set; }
         }
 
         public ActionResult DeleteSeller(string id)

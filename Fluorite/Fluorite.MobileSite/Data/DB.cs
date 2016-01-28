@@ -41,6 +41,8 @@ namespace Fluorite.MobileSite.Data
         public DateTime CreateTime { get; set; }
         public bool Valid { get; set; }
         public virtual List<Article> Articles { get; set; }
+        public string LogoUrl { get; set; }
+        public string LogoText { get; set; }
     }
     public class Article
     {

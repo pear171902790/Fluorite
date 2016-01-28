@@ -34,7 +34,7 @@
                 <tr>
                     <td>@seller.Name</td>
                     <td>@seller.CreateTime.ToShortDateString()</td>
-                    <td>@("http://"+host+"/s/"+ seller.Name)</td>
+                    <td>@("http://"+host+"/shop/"+ seller.Name)</td>
                     <td>
                         <a class="btn btn-primary" href="@Url.Action("Articles",new {sellerId=seller.Id})">编辑</a>
                         <input type="button" value="删除" class="btn btn-danger" onclick="del('@seller.Id')" />
@@ -65,6 +65,7 @@
                         <label>电话</label>
                         <input type="text" class="form-control" name="Tel" placeholder="电话">
                     </div>
+                    
                     <div class="form-group">
                         <label>备注</label>
                         <textarea class="form-control" rows="3" name="Remarks"></textarea>
