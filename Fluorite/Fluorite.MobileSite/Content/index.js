@@ -65,7 +65,7 @@
     $(".owl-carousel").owlCarousel({
         autoplay: true,
         items: 1,
-        loop: false,
+        loop: true,
         dots: true
     });
     $('.left').on('touchmove', function (event) {
