@@ -53,17 +53,18 @@
                 @*                <i class="fa fa-circle"></i>*@
             </div>
         </div>
-        <div class="cf" style="width: 100%; height: 41px;"></div>
+        <div class="cf under_head" style="width: 100%;"></div>
         <div class="owl-carousel owl-theme w100">
             @for (int i = 0; i < 5; i++)
             {
                 <div>
                     <a href="@((crousels.NullOrNone() || !crousels.Exist(i)) ? "javascript:void(0)" : Url.Action("Article") + "?articleId=" + crousels[i].Id)">
-                        <img src="@((crousels.NullOrNone() || !crousels.Exist(i)) ? "/Content/nopic.jpg" : crousels[i].CoverUrl)" />
+                        <img src="@((crousels.NullOrNone() || !crousels.Exist(i)) ? "/Content/nopic.jpg" : crousels[i].CoverUrl)"/>
                     </a>
                 </div>
             }
         </div>
+        <div class="dot_wrap"></div>
         <div class="content w100">
             @for (int i = 0; i < 4; i++)
             {

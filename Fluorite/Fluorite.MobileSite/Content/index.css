@@ -14,14 +14,11 @@
     }
 
     div.logo {
-        width: 80%;
+        width: 70%;
         text-align: center;
     }
 
-    div.head i {
-        font-size: 2em;
-        color: #727071;
-    }
+   
 
     .owl-wrapper-outer {
         width: 100%;
@@ -35,7 +32,7 @@
     .owl-dots {
         margin-top: -8% !important;
         position: relative;
-        z-index: 7777;
+        z-index: 8888;
     }
 
     
@@ -134,7 +131,7 @@
         opacity: 0.7;
         position: fixed;
         top: 0;
-        z-index: 8888;
+        z-index: 9999;
     }
 .search_button {
     width: 15%;
@@ -142,4 +139,16 @@
 }
 .search_button img {
     width: 80%;
+}
+
+.dot_wrap {
+    border: 0.5px solid grey;
+    width: 130px;
+    height: 24px;
+    margin: 0 auto;
+    position: relative;
+    bottom: 27px;
+    z-index: 7777;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 25px;
 }

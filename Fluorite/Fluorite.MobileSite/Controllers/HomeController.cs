@@ -54,5 +54,10 @@ namespace Fluorite.MobileSite.Controllers
 
             return View(article);
         }
+
+        public ActionResult Order(string articleId)
+        {
+            return View();
+        }
     }
 }

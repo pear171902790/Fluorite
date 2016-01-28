@@ -3,7 +3,7 @@
     var leftShow = false;
     var windowWidth = $(window).width();
     var windowHeight = $(window).height();
-    var mainWidth = windowWidth * 166 / 100;
+    var mainWidth = (windowWidth * 166 / 100)+5;
     $('div.main').css('width', mainWidth + 'px');
     var rightWidth = $('.right').width();
 //    $('div.left').css('height', windowHeight + 200 + 'px');
@@ -72,4 +72,13 @@
         e.preventDefault();
         e.returnValue = false;
     });
+
+
+    var owlItemWidth = $('.owl-item').eq(0).width()-5;
+    $('.owl-stage-outer').css('width', owlItemWidth + 'px');
+    $('.owl-carousel').css('width', owlItemWidth + 'px').css('height', $('.owl-stage-outer').height()+'px').css('margin','0 auto');
+
+    var headHeight = $('.head').height();
+    var headPaddingTop = (5 * windowWidth) / 320;
+    $('.under_head').css('height', (headHeight + headPaddingTop) + 'px');
 });
