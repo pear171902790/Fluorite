@@ -2,6 +2,7 @@
 @using Fluorite.MobileSite.Models
 @{
     Layout = "~/Views/_Layout.cshtml";
+    var seller = ViewBag.Seller as Seller;
     var crousels = ViewBag.Crousels as List<Article>;
     var commons = ViewBag.Commons as List<Article>;
     var menus = ViewBag.Menus as List<Article>;
@@ -47,7 +48,7 @@
                 <img src="~/Content/菜单按钮30x30.png" />
             </div>
             <div class="logo fl">
-                <img src="~/页面内元素打包/顶部元素/顶部LOGO.png" />
+                <img src="@(string.IsNullOrEmpty(seller.LogoUrl) ? "/页面内元素打包/顶部元素/顶部LOGO.png" : seller.LogoUrl)" />
             </div>
             <div class="user fl">
                 @*                <i class="fa fa-circle"></i>*@
@@ -64,7 +65,6 @@
                 </div>
             }
         </div>
-        <div class="dot_wrap"></div>
         <div class="content w100">
             @for (int i = 0; i < 4; i++)
             {
@@ -101,14 +101,9 @@
                 <div class="cf"></div>
             }
             <div class="foot_bottom w100">
-                Fomind
+                @(string.IsNullOrEmpty(seller.LogoText)?"Fomind":seller.LogoText)
             </div>
         </div>
     </div>
 </div>
 <script src="~/Content/index.js"></script>
-@*<script>*@
-@*    $('.entrance').on('touchend', function (event) {*@
-@*        window.*@
-@*    });*@
-@*</script>*@

@@ -37,7 +37,12 @@
     setResponsiveValue($('.search_button img'), [3], ['margin-top']);
     setResponsiveValue($('div.content'), [15], ['margin-top', 'margin-bottom']);
     setResponsiveValue($('div.item'), [10], ['margin-top', 'margin-bottom']);
-    setResponsiveValue($('div.dot_wrap'), [130, 24, 27], ['width', 'height', 'bottom']);
+//    setResponsiveValue($('div.dot_wrap'), [120, 24], ['width', 'height']);
+    //    setResponsiveValue($('div.dot_wrap_wrap'), [120], ['width']);
+    
+
+    
+
 
 
     var showLeftMenu = function () {
@@ -77,9 +82,13 @@
 
     var owlItemWidth = $('.owl-item').eq(0).width()-5;
     $('.owl-stage-outer').css('width', owlItemWidth + 'px');
-    $('.owl-carousel').css('width', owlItemWidth + 'px').css('height', $('.owl-stage-outer').height()+'px').css('margin','0 auto');
+    var owlStageOuterHeight = $('.owl-stage-outer').height();
+    $('.owl-carousel').css('width', owlItemWidth + 'px').css('height', owlStageOuterHeight + 'px').css('margin', '0 auto');
 
     var headHeight = $('.head').height();
     var headPaddingTop = (5 * windowWidth) / 320;
     $('.under_head').css('height', (headHeight + headPaddingTop) + 'px');
+
+    setResponsiveValue($('.owl-dots'), [120, 35, 5], ['width', 'bottom', 'padding-top']);
+
 });

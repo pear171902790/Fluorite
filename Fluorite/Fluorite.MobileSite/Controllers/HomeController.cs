@@ -21,6 +21,11 @@ namespace Fluorite.MobileSite.Controllers
             using (var db = new DB())
             {
                 var seller = db.Sellers.FirstOrDefault(x => x.Name == sellerName);
+                if (seller == null)
+                {
+                    throw new Exception();
+                }
+                ViewBag.Seller = seller;
                 ViewBag.Crousels =
                     seller.Articles.Where(x => x.Type == ArticleType.Carousel).Take(5).ToList();
                 ViewBag.Commons =
