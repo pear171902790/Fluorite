@@ -116,6 +116,7 @@ namespace Fluorite.MobileSite.Controllers
                     var article = db.Articles.SingleOrDefault(x => x.Id == new Guid(command.Id));
                     article.Content = command.Details;
                     article.Order = command.Order;
+                    article.OrderTitle = command.OrderTitle;
                     article.Title = command.Title;
                     article.Type = (ArticleType) command.Type;
                     article.CoverUrl = string.IsNullOrEmpty(coverUrl) ? article.CoverUrl : coverUrl;
@@ -155,6 +156,7 @@ namespace Fluorite.MobileSite.Controllers
                         Id = Guid.NewGuid(),
                         Content = command.Details,
                         Order = command.Order,
+                        OrderTitle = command.OrderTitle,
                         CreateTime = DateTime.Now,
                         SellerId = new Guid(command.SellerId),
                         Title = command.Title,
@@ -207,6 +209,7 @@ namespace Fluorite.MobileSite.Controllers
             public string ExternalUrl { get; set; }
             public string ImageName { get; set; }
             public string Order { get; set; }
+            public string OrderTitle { get; set; }
         }
 
         public class EditArticleUICommand
@@ -221,6 +224,7 @@ namespace Fluorite.MobileSite.Controllers
             public string ImageName { get; set; }
             public string Id { get; set; }
             public string Order { get; set; }
+            public string OrderTitle { get; set; }
         }
         public class SellerUICommand
         {
