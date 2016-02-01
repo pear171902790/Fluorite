@@ -27,13 +27,13 @@ namespace Fluorite.MobileSite.Controllers
                 }
                 ViewBag.Seller = seller;
                 ViewBag.Crousels =
-                    seller.Articles.Where(x => x.Type == ArticleType.Carousel).Take(5).ToList();
+                    seller.Articles.Where(x => x.Type == ArticleType.Carousel&&x.Valid).Take(5).ToList();
                 ViewBag.Commons =
-                    seller.Articles.Where(x => x.Type == ArticleType.Common).Take(4).ToList();
+                    seller.Articles.Where(x => x.Type == ArticleType.Common && x.Valid).Take(4).ToList();
                 ViewBag.Menus =
-                    seller.Articles.Where(x => x.Type == ArticleType.Menu).Take(7).ToList();
+                    seller.Articles.Where(x => x.Type == ArticleType.Menu && x.Valid).Take(7).ToList();
                 ViewBag.Smalls =
-                    seller.Articles.Where(x => x.Type == ArticleType.SmallCover)
+                    seller.Articles.Where(x => x.Type == ArticleType.SmallCover && x.Valid)
                         .Take(2)
                         .ToList();
             }
