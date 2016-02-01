@@ -3,17 +3,47 @@
 @{
     Layout = "~/Views/_Layout.cshtml";
 }
+<link href="~/bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="~/datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet"/>
+<link href="~/Content/order.css" rel="stylesheet" />
+@*<script src="~/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>*@
+<script src="~/Content/data-getter.js"></script>
+<script src="~/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+<script src="~/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
 
-
-
-<div class="title">标题标题标题标题</div>
-<div class="content">内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</div>
-<form id="form_add_article" style="width: 60%; ">
+<div class="header">标题标题标题标题</div>
+<div class="header_replacement"></div>
+<div class="content mid">内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</div>
+<form class="form_order mid">
     <div class="form-group">
-        <label>商品标题</label>
-        <input type="text" class="form-control" name="Title">
+        <label>姓名</label>
+        <input type="text" class="form-control" name="Name">
+    </div>
+    <div class="form-group">
+        <label>手机号</label>
+        <input type="text" class="form-control" name="Mobile">
+    </div>
+    <div class="form-group">
+        <label>微信号</label>
+        <input type="text" class="form-control" name="Wx">
     </div>
 </form>
+<div class="content mid">
+    <input size="16" type="text" value="2012-06-15 14:45" readonly class="form_datetime form-control">
+    <script type="text/javascript">
+        $(".form_datetime").datetimepicker({
+            format: 'yyyy-mm-dd hh:ii',
+            language: 'zh-CN',
+            pickerPosition: 'top-left',
+            autoclose: true,
+            todayBtn:true
+        });
+    </script>
+</div>
+<div class="mid">
+    <input type="button" class="btn submit" value="提交" />
+</div>
+<div class="footer">Fomind 荧石 提供支持</div>
 
 
 

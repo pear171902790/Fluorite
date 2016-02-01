@@ -39,11 +39,6 @@
     setResponsiveValue($('div.item'), [10], ['margin-top', 'margin-bottom']);
 //    setResponsiveValue($('div.dot_wrap'), [120, 24], ['width', 'height']);
     //    setResponsiveValue($('div.dot_wrap_wrap'), [120], ['width']);
-    
-
-    
-
-
 
     var showLeftMenu = function () {
         window.scrollTo(0, 0);
@@ -67,28 +62,31 @@
         e.returnValue = false;
     });
     $('.cover').on('touchstart', hideLeftMenu);
-    $(".owl-carousel").owlCarousel({
-        autoplay: true,
-        items: 1,
-        loop: true,
-        dots: true
-    });
+    
     $('.left').on('touchmove', function (event) {
         var e = window.event || event;
         e.preventDefault();
         e.returnValue = false;
     });
-
-
-    var owlItemWidth = $('.owl-item').eq(0).width()-5;
-    $('.owl-stage-outer').css('width', owlItemWidth + 'px');
-    var owlStageOuterHeight = $('.owl-stage-outer').height();
-    $('.owl-carousel').css('width', owlItemWidth + 'px').css('height', owlStageOuterHeight + 'px').css('margin', '0 auto');
+    
 
     var headHeight = $('.head').height();
     var headPaddingTop = (5 * windowWidth) / 320;
     $('.under_head').css('height', (headHeight + headPaddingTop) + 'px');
 
-    setResponsiveValue($('.owl-dots'), [120, 35, 5], ['width', 'bottom', 'padding-top']);
 
+    $(".owl-carousel").owlCarousel({
+        autoplay: true,
+        items: 1,
+        loop: true,
+        dots: true,
+        onInitialized: function() {
+            setResponsiveValue($('.owl-dots'), [120, 35, 5], ['width', 'bottom', 'padding-top']);
+            var owlItemWidth = $('.owl-item').eq(0).width() - 5;
+            $('.owl-stage-outer').css('width', owlItemWidth + 'px');
+            var owlStageOuterHeight = $('.owl-stage-outer').height();
+            $('.owl-carousel').css('width', owlItemWidth + 'px').css('height', owlStageOuterHeight + 'px').css('margin', '0 auto');
+//            $('.owl-item').css('    ', '0 5px');
+        }
+    });
 });

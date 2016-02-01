@@ -16,6 +16,12 @@ namespace Fluorite.MobileSite
 
 
             routes.MapRoute(
+                name: "Order",
+                url: "yy",
+                defaults: new { controller = "Home", action = "Order", id = UrlParameter.Optional }
+            );
+
+            routes.MapRoute(
                 name: "NotFound",
                 url: "404",
                 defaults: new { controller = "Home", action = "NotFound", id = UrlParameter.Optional }
