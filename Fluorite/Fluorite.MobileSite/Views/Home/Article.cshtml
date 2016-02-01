@@ -4,5 +4,21 @@
     ViewBag.Title = Model.Title;
     Layout = null;
 }
+<!DOCTYPE html>
 
-@Html.Raw(Model.Content)
+<html>
+<head>
+    <title>登录</title>
+    <style>
+        html, body {
+            font-size: 15px;
+            font-family: 微软雅黑, 宋体, Arial, Helvetica, sans-serif !important;
+        }
+    </style>
+</head>
+<body>
+    <div style="margin: 0 auto; width: 85%">
+        @Html.Raw(Model.Content)
+    </div>
+</body>
+</html>

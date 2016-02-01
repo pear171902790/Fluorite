@@ -73,6 +73,7 @@ namespace Fluorite.MobileSite.Controllers
                     seller.Tel = sellerUiCommand.Tel;
                     seller.LogoUrl = logoUrl;
                     seller.LogoText = sellerUiCommand.LogoText;
+                    seller.LogoUri = sellerUiCommand.LogoUri;
                     db.SaveChanges();
                     transaction.Complete();
                 }
@@ -180,6 +181,7 @@ namespace Fluorite.MobileSite.Controllers
             var guid = new Guid(sellerId);
             var seller = new DB().Sellers.SingleOrDefault(x => x.Id == guid);
             ViewBag.Seller = seller;
+            ViewBag.Host = Request.Url.Authority;
             return View();
         }
 
@@ -235,6 +237,8 @@ namespace Fluorite.MobileSite.Controllers
             public string Remarks { get; set; }
             public string ImageName { get; set; }
             public string LogoText { get; set; }
+
+            public string LogoUri { get; set; }
         }
 
         public ActionResult DeleteSeller(string id)

@@ -81,7 +81,8 @@
         loop: true,
         dots: true,
         onInitialized: function () {
-            setResponsiveValue($('.owl-dots'), [120, 35, 5], ['width', 'bottom', 'padding-top']);
+            setResponsiveValue($('.owl-dots'), [120, 20], ['width', 'bottom']);
+            setResponsiveValue($('.owl-dots span'), [3], ['margin-left', 'margin-right']);
             owlItemWidth = $('.owl-item').eq(0).width() - 5;
             $('.owl-stage-outer').css('width', owlItemWidth + 'px');
         }
@@ -90,5 +91,6 @@
     setTimeout(function() {
         var owlStageOuterHeight = $('.owl-stage-outer').height();
         $('.owl-carousel').css('width', owlItemWidth + 'px').css('height', owlStageOuterHeight + 'px').css('margin', '0 auto');
+        $('.owl-stage').css('right', '2px');
     }, 500);
 });

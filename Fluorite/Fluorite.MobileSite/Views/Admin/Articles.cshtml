@@ -6,6 +6,7 @@
     var seller = ViewBag.Seller as Seller;
     var articles = seller.Articles.Where(x => x.Valid).OrderByDescending(x => x.CreateTime).ToList();
     ViewBag.Title = seller.Name;
+    var host = ViewBag.Host as string;
 }
 <style>
     h1 {
@@ -29,14 +30,18 @@
 </ol>
 <div class="panel panel-info">
     <div class="panel-heading">
-        <h3 class="panel-title">基本信息</h3>
+        <h3 class="panel-title">基本信息 [<a id="s_o_h">展开</a>]</h3>
     </div>
     <div class="panel-body">
-        <form id="form_add_seller">
+        <form id="form_add_seller" style="display: none">
+            <div class="form-group">
+                <label>本页链接</label>
+                <input type="text" class="form-control" readonly="readonly" value="@("http://"+host+"/shop/"+ seller.Name)">
+            </div>
             <div class="form-group">
                 <label>商户名称</label>
                 <input type="text" class="form-control" name="Name" value="@seller.Name">
-                <input type="hidden" name="Id" value="@seller.Id" />
+                <input type="hidden" name="Id" value="@seller.Id"/>
                 <input type="hidden" name="ImageName" id="ImageName">
             </div>
             <div class="form-group">
@@ -48,29 +53,33 @@
                 <input type="text" class="form-control" name="Tel" value="@seller.Tel">
             </div>
             <div class="form-group">
-                <label>顶部LOGO</label><br />
+                <label>顶部LOGO</label><br/>
                 @if (string.IsNullOrEmpty(seller.LogoUrl))
                 {
-                    <img id="cover" style="display: none" />
+                    <img id="cover" style="display: none"/>
                 }
                 else
                 {
-                    <img id="cover" src="@seller.LogoUrl" />
+                    <img id="cover" src="@seller.LogoUrl"/>
                 }
-                <br /><br />
-                <input type="file" name="file_upload" id="file_upload" />
+                <br/><br/>
+                <input type="file" name="file_upload" id="file_upload"/>
             </div>
             <div class="form-group">
                 <label>底部LOGO文字</label>
                 <input type="text" class="form-control" name="LogoText" value="@seller.LogoText">
             </div>
             <div class="form-group">
-                <label>备注</label>
-                <textarea class="form-control" rows="3" name="Remarks">@seller.Remarks</textarea>
+                <label>底部LOGO链接</label>
+                <input type="text" class="form-control" name="LogoUri" value="@seller.LogoUri">
             </div>
+@*            <div class="form-group">*@
+@*                <label>备注</label>*@
+@*                <textarea class="form-control" rows="3" name="Remarks">@seller.Remarks</textarea>*@
+@*            </div>*@
             <div class="form-group">
-                <input type="button" class="btn btn-primary" value="更新" id="btn_save" />
-                <input type="button" class="btn btn-default" value="恢复原值" id="btn_revert" />
+                <input type="button" class="btn btn-primary" value="更新" id="btn_save"/>
+                <input type="button" class="btn btn-default" value="恢复原值" id="btn_revert"/>
             </div>
         </form>
     </div>
@@ -107,10 +116,20 @@
 </div>
 
 <script>
-    $('#btn_save').on('click', function () {
+    $('#s_o_h').click(function() {
+        if ($(this).text() === '收起') {
+            $('#form_add_seller').hide();
+            $(this).text('展开');
+        } else {
+            $('#form_add_seller').show();
+            $(this).text('收起');
+        }
+    });
+    
+    $('#btn_save').on('click', function() {
         var command = $('#form_add_seller').serializeJson();
         $.ajax({
-            url: "@Url.Action("EditSeller","Admin")",
+            url: "@Url.Action("EditSeller", "Admin")",
             type: 'post',
             data: command,
             success: function () {

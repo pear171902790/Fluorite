@@ -45,8 +45,8 @@
     </div>
     
     <div class="form-group">
-        <label>说明</label>
-        <textarea class="form-control" rows="3" name="Remarks">@article.Remarks</textarea>
+@*        <label>说明</label>*@
+@*        <textarea class="form-control" rows="3" name="Remarks">@article.Remarks</textarea>*@
         <div class="checkbox">
             <label>
                 <input type="checkbox" onchange="check()" id="IsExternal" @(article.IsExternal?"checked":string.Empty)/> 外站链接
@@ -82,7 +82,9 @@
     var ue = UE.getEditor('container', {
         toolbars: [
 ['fullscreen', 'source', 'undo', 'redo'],
-['bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', 'simpleupload']
+['bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', 'simpleupload', 'fontfamily', 'fontsize', '|',
+            'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|', 'touppercase', 'tolowercase', '|',
+            'link', 'unlink', 'anchor', '|', 'imagenone', 'imageleft', 'imageright', 'imagecenter']
         ],
         autoHeightEnabled: true,
         autoFloatEnabled: true
@@ -90,7 +92,9 @@
     var order = UE.getEditor('order', {
         toolbars: [
 ['fullscreen', 'source', 'undo', 'redo'],
-['bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', 'simpleupload']
+['bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', 'simpleupload', 'fontfamily', 'fontsize', '|',
+            'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|', 'touppercase', 'tolowercase', '|',
+            'link', 'unlink', 'anchor', '|', 'imagenone', 'imageleft', 'imageright', 'imagecenter']
         ],
         autoHeightEnabled: true,
         autoFloatEnabled: true
