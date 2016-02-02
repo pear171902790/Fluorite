@@ -1,5 +1,7 @@
 ﻿@{
     Layout = null;
+    var title = ViewBag.Title as string;
+    title = string.IsNullOrEmpty(title) ? "荧石微站" : title;
 }
 
 <!DOCTYPE html>
@@ -7,7 +9,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title></title>
+    <title>@title</title>
     <link href="~/font-awesome-4.4.0/css/font-awesome.min.css" rel="stylesheet" />
     
     <style>

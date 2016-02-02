@@ -25,6 +25,7 @@ namespace Fluorite.MobileSite.Controllers
                 {
                     throw new Exception();
                 }
+                ViewBag.Title = seller.Name;
                 ViewBag.Seller = seller;
                 ViewBag.Crousels =
                     seller.Articles.Where(x => x.Type == ArticleType.Carousel&&x.Valid).Take(5).ToList();

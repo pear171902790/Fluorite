@@ -21,7 +21,7 @@
             }
         }
     }
-    setResponsiveValue($('.loading'), [200,110], ['top','left']);
+    setResponsiveValue($('.loading'), [200,120], ['top','left']);
     setResponsiveValue($('body'), [15], ['font-size']);
     setResponsiveValue($('div.head'), [5], ['padding-top']);
     setResponsiveValue($('div.menu img'), [30], ['height']);
