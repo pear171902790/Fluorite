@@ -132,6 +132,7 @@
     <Content Include="Content\uploadify.swf" />
     <Content Include="Content\加载图标红点.gif" />
     <Content Include="Content\放大镜按钮30x30.png" />
+    <Content Include="Content\菜单按钮20x20.png" />
     <Content Include="Content\菜单按钮30x30.png" />
     <Content Include="datetimepicker\css\bootstrap-datetimepicker.css" />
     <Content Include="datetimepicker\css\bootstrap-datetimepicker.min.css" />
