@@ -1,15 +1,11 @@
 ﻿$(document).ready(function () {
     $('div.left').hide();
-//    var leftShow = false;
+   
     var windowWidth = $(window).width();
-//    var windowHeight = $(window).height();
     var mainWidth = (windowWidth * 166 / 100)+5;
     $('div.main').css('width', mainWidth + 'px');
-    var rightWidth = $('.right').width();
-//    $('div.left').css('height', windowHeight + 200 + 'px');
-    //    $('div.cover').css('width', windowWidth / 3 + 'px').css('height', windowHeight + 'px').css('left', (mainWidth - rightWidth) + 'px');
-    $('div.left').css('height', '2000px');
-    $('div.cover').css('width',  '2000px').css('height', '2000px').css('left', (mainWidth - rightWidth) + 'px');
+//    console.log(mainWidth);
+    
     var setResponsiveValue = function ($obj, values, propertyNames) {
         if (propertyNames && values) {
             var finalValue = 0;
@@ -24,7 +20,8 @@
     setResponsiveValue($('.loading'), [200,120], ['top','left']);
     setResponsiveValue($('body'), [15], ['font-size']);
     setResponsiveValue($('div.head'), [5], ['padding-top']);
-    setResponsiveValue($('div.menu img'), [30], ['height']);
+    setResponsiveValue($('div.menu'), [5], ['padding-top', 'padding-left']);
+    setResponsiveValue($('div.menu img'), [20], ['height']);
     setResponsiveValue($('div.logo img'), [32],['height']);
     setResponsiveValue($('div.item_text'), [50,45], ['height','line-height']);
     setResponsiveValue($('div.foot_right_text'), [55,47.5], ['height', 'line-height']);
@@ -37,12 +34,12 @@
     setResponsiveValue($('.search_button img'), [3], ['margin-top']);
     setResponsiveValue($('div.content'), [15], ['margin-top', 'margin-bottom']);
     setResponsiveValue($('div.item'), [10], ['margin-top', 'margin-bottom']);
-//    setResponsiveValue($('div.dot_wrap'), [120, 24], ['width', 'height']);
-    //    setResponsiveValue($('div.dot_wrap_wrap'), [120], ['width']);
-
 
     $('.loading').hide();
     $('.main').show();
+
+    $('div.left').css('height', '2000px');
+    $('div.cover').css('width', '2000px').css('height', '2000px').css('left', (mainWidth - $('.right').width()) + 'px');
 
     var headHeight = $('.head').height();
     var headPaddingTop = (5 * windowWidth) / 320;
@@ -68,9 +65,8 @@
         $('.owl-stage').css('right', '2px');
 
     }, 500);
-});
 
-
+    var leftShow = false;
     var showLeftMenu = function () {
         window.scrollTo(0, 0);
         $('div.left').show();
@@ -93,12 +89,16 @@
         e.returnValue = false;
     });
     $('.cover').on('touchstart', hideLeftMenu);
-    
+
     $('.left').on('touchmove', function (event) {
         var e = window.event || event;
         e.preventDefault();
         e.returnValue = false;
     });
+});
+
+
+    
     
 
     
