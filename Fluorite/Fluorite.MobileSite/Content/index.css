@@ -114,22 +114,6 @@ div.right {
     margin: 0 auto;
 }
 
-.left_search {
-    background-color: #707070;
-    width: 100%;
-}
-
-.left_search_input {
-    background-color: white;
-    width: 95%;
-    margin: 0 auto;
-}
-
-#search {
-    border: 0;
-    width: 85%;
-}
-
 .left_menu {
     width: 100%;
     background-color: #434343;
@@ -151,13 +135,30 @@ div.right {
     z-index: 9999;
 }
 
+.left_search {
+    background-color: #707070;
+    width: 100%;
+}
+
+.left_search_input {
+    background-color: white;
+    width: 95%;
+    margin: 0 auto;
+}
+
+#search {
+    border: 0;
+    width: 85%;
+    display: inline-block !important;
+}
 .search_button {
-    width: 15%;
-    float: right;
+    width: 10%;
+    display: inline-block !important;
 }
 
     .search_button img {
         width: 80%;
+        position: relative;
     }
 
 

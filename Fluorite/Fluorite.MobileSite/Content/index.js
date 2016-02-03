@@ -28,10 +28,10 @@
     setResponsiveValue($('div.foot_logo'), [55], ['min-height']);
     setResponsiveValue($('.left_search'), [40], ['height']);
     setResponsiveValue($('.left_search_input'), [30], ['height']);
-    setResponsiveValue($('#search'), [30], ['height']);
+    setResponsiveValue($('#search'), [25], ['height']);
     setResponsiveValue($('.left_menu'), [40], ['height', 'line-height']);
     setResponsiveValue($('.search_button'), [30], ['height']);
-    setResponsiveValue($('.search_button img'), [3], ['margin-top']);
+    setResponsiveValue($('.search_button img'), [6], ['top']);
     setResponsiveValue($('div.content'), [15], ['margin-top', 'margin-bottom']);
     setResponsiveValue($('div.item'), [10], ['margin-top', 'margin-bottom']);
 
@@ -51,6 +51,8 @@
         items: 1,
         loop: true,
         dots: true,
+        smartSpeed: 500,
+        autoplayTimeout: 5000,
         onInitialized: function () {
             setResponsiveValue($('.owl-dots'), [120, 20], ['width', 'bottom']);
             setResponsiveValue($('.owl-dots span'), [3], ['margin-left', 'margin-right']);
