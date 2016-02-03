@@ -62,7 +62,7 @@ namespace Fluorite.MobileSite.Data
         public ArticleType Type { get; set; }
         public bool IsExternal { get; set; }
         public string Order { get; set; }
-
+        public string OrderPicUrl { get; set; }
         public string OrderTitle { get; set; }
     }
 

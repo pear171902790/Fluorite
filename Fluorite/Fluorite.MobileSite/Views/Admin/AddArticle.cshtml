@@ -26,6 +26,7 @@
         <label>商品标题</label>
         <input type="text" class="form-control" name="Title">
         <input type="hidden" name="ImageName" id="ImageName">
+        <input type="hidden" name="ImageNameYY" id="ImageNameYY">
         <input type="hidden" name="SellerId" value="@seller.Id">
     </div>
     <div class="form-group">
@@ -52,6 +53,11 @@
         <input type="text" class="form-control" name="OrderTitle">
     </div>
     <div class="form-group details">
+        <label>预约广告图</label>
+        <img id="cover_yy" style="display: none" /><br /><br />
+        <input type="file" name="file_upload_yy" id="file_upload_yy" />
+    </div>
+    <div class="form-group details">
         <label>预约内容</label>
         <script id="order" name="order" type="text/plain">
         </script>
@@ -71,7 +77,7 @@
     var ue = UE.getEditor('container', {
         toolbars: [
 ['fullscreen', 'source', 'undo', 'redo'],
-['bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', 'simpleupload', 'fontfamily', 'fontsize', '|','justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|', 'touppercase', 'tolowercase', '|','link', 'unlink', 'anchor', '|', 'imagenone', 'imageleft', 'imageright', 'imagecenter']
+['bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', 'simpleupload', 'fontfamily', 'fontsize', '|', 'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|', 'touppercase', 'tolowercase', '|', 'link', 'unlink', 'anchor', '|', 'imagenone', 'imageleft', 'imageright', 'imagecenter']
         ],
         autoHeightEnabled: true,
         autoFloatEnabled: true
@@ -94,7 +100,7 @@
         article.IsExternal = document.getElementById('IsExternal').checked;
         $.ajax({
             url: '@Url.Action("AddArticle", "Admin")',
-            type:'post',
+            type: 'post',
             data: JSON.stringify(article),
             success: function () {
                 alert('成功');
@@ -114,6 +120,16 @@
             $('#cover').show().attr('src', '@Url.Content("~/temp/")' + data);
             $('#ImageName').val(data);
             $('.uploadify-button-text').html('更换封面？');
+        }
+    });
+    $('#file_upload_yy').uploadify({
+        'multi': false,
+        'buttonText': '上传图片',
+        'swf': '@Url.Content("~/Content/uploadify.swf")',
+        'uploader': '@Url.Action("SaveImage")',
+        'onUploadSuccess': function (file, data, response) {
+            $('#cover_yy').show().attr('src', '@Url.Content("~/temp/")' + data);
+            $('#ImageNameYY').val(data);
         }
     });
     var check = function () {

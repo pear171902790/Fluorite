@@ -1,5 +1,5 @@
 ﻿.header {
-    background-color: goldenrod;
+    background-color: rgb(199, 159, 99);
     height: 35px;
     line-height: 35px;
     vertical-align: middle;
@@ -30,5 +30,5 @@
 }
 .submit {
     width: 100%;
-    background-color: goldenrod;
+    background-color: rgb(199, 159, 99);
 }
