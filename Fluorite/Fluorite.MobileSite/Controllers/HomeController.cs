@@ -61,9 +61,28 @@ namespace Fluorite.MobileSite.Controllers
             return View(article);
         }
 
-        public ActionResult Order(string articleId)
+        public ActionResult Order(string sName,string pName)
         {
-            return View();
+            Article article;
+            try
+            {
+                using (var db = new DB())
+                {
+                    var seller = db.Sellers.SingleOrDefault(x => x.Name == sName);
+                    article = db.Articles.SingleOrDefault(x => x.Title == pName && x.SellerId == seller.Id);
+                }
+            }
+            catch (Exception)
+            {
+                article = new Article()
+                {
+                    OrderTitle = "标题标题标题标题",
+                    Order = "内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容",
+                    OrderPicUrl = "/页面内元素打包/内容元素/大图01.jpg"
+                };
+                
+            }
+            return View(article);
         }
     }
 }

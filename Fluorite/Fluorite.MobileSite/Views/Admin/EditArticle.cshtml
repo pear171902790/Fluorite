@@ -24,7 +24,7 @@
         </select>
     </div>
     <div class="form-group">
-        <label>商品标题</label>
+        <label>商品名称</label>
         <input type="text" class="form-control" name="Title" value="@article.Title">
         <input type="hidden" name="ImageName" id="ImageName">
         <input type="hidden" name="ImageNameYY" id="ImageNameYY">
@@ -46,8 +46,8 @@
     </div>
     
     <div class="form-group">
-@*        <label>说明</label>*@
-@*        <textarea class="form-control" rows="3" name="Remarks">@article.Remarks</textarea>*@
+        <label>描述</label>
+        <textarea class="form-control" rows="3" name="Remarks">@article.Remarks</textarea>
         <div class="checkbox">
             <label>
                 <input type="checkbox" onchange="check()" id="IsExternal" @(article.IsExternal?"checked":string.Empty)/> 外站链接

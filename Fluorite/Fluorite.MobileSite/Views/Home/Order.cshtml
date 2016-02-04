@@ -1,4 +1,4 @@
-﻿@model dynamic
+﻿@model Fluorite.MobileSite.Data.Article
 
 @{
     Layout = "~/Views/_Layout.cshtml";
@@ -6,37 +6,41 @@
 <link href="~/bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet"/>
 @*<link href="~/datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet"/>*@
 @*<link href="~/date-time-build/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />*@
-<link href="~/dist/DateTimePicker.min.css" rel="stylesheet" />
+@*<link href="~/dist/DateTimePicker.min.css" rel="stylesheet" />*@
 <link href="~/Content/order.css" rel="stylesheet" />
 @*<script src="~/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>*@
 
 @*<script src="~/datetimepicker/js/bootstrap-datetimepicker.min.js"></script>*@
 @*<script src="~/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>*@
 
-<div class="header">标题标题标题标题</div>
+<div class="header">@Model.OrderTitle</div>
 <div class="header_replacement"></div>
 <div class="mid">
-    <img src="~/页面内元素打包/内容元素/大图01.jpg" />
+    <img src="@Model.OrderPicUrl" />
 </div>
-<div class="content mid">内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容</div>
+<div class="content mid">@Model.Order</div>
 <form class="form_order mid">
     <div class="form-group">
         <label>姓名</label>
-        <input type="text" class="form-control" name="Name">
+        <input type="text" class="form-control" name="Name" placeholder="请问怎么称呼您？">
     </div>
     <div class="form-group">
         <label>手机号</label>
-        <input type="text" class="form-control" name="Mobile">
+        <input type="text" class="form-control" name="Mobile" placeholder="我们为您安排合适的时间">
     </div>
     <div class="form-group">
-        <label>日期</label>
-        <input type="text" data-field="date" readonly="readonly" class="form-control">
+        <label>留言</label>
+        <input type="text" class="form-control" name="Comment" placeholder="您还想了解哪些信息？感谢选择随享优选服务">
     </div>
-    <div class="form-group">
-        <label>时间</label>
-        <input type="text" data-field="time" readonly="readonly" class="form-control">
-    </div>
-    <div id="dtBox"></div>
+@*    <div class="form-group">*@
+@*        <label>日期</label>*@
+@*        <input type="text" data-field="date" readonly="readonly" class="form-control">*@
+@*    </div>*@
+@*    <div class="form-group">*@
+@*        <label>时间</label>*@
+@*        <input type="text" data-field="time" readonly="readonly" class="form-control">*@
+@*    </div>*@
+@*    <div id="dtBox"></div>*@
 </form>
 @*<div class="content mid">*@
 @*    <input size="16" type="text" value="2012-06-15 14:45" readonly class="form_datetime form-control">*@
@@ -53,17 +57,18 @@
 
 
 <div class="mid">
-    <input type="button" class="btn submit" value="提交" />
+    <input type="button" class="btn btnOrder" value="预 约" />
 </div>
 <div class="footer">Fomind 荧石 提供支持</div>
 <script src="~/Content/data-getter.js"></script>
 @*<script src="~/date-time-build/js/Moment_local.js"></script>*@
 @*<script src="~/date-time-build/js/bootstrap-datetimepicker.min.js"></script>*@
-<script src="~/dist/DateTimePicker.min.js"></script>
-<script src="~/dist/i18n/DatetimePicker-i18n-zh-CN.js"></script>
+@*<script src="~/dist/DateTimePicker.min.js"></script>*@
+@*<script src="~/dist/i18n/DatetimePicker-i18n-zh-CN.js"></script>*@
 <script>
     $('.loading').hide();
     $('.main').show();
+
 //    $('#datetimepicker1').datetimepicker({
 //        sideBySide: false,
 //        locale: 'zh-CN',
@@ -74,10 +79,31 @@
 //                vertical: 'top'
 //            }
     //    });
-    $("#dtBox").DateTimePicker({
-        language:'zh-CN'
-    });
-    
+//    $("#dtBox").DateTimePicker({
+//        language:'zh-CN'
+    //    });
+    var windowWidth = $(window).width();
+    var setResponsiveValue = function ($obj, values, propertyNames) {
+        if (propertyNames && values) {
+            var finalValue = 0;
+            for (var i = 0; i < propertyNames.length; i++) {
+                if (values[i] !== undefined) {
+                    finalValue = (values[i] * windowWidth) / 320;
+                }
+                $obj.css(propertyNames[i], finalValue + 'px');
+            }
+        }
+    }
+    setResponsiveValue($('.header'), [30, 30, 18], ['height', 'line-height', 'font-size']);
+    setResponsiveValue($('.header_replacement'), [35], ['height']);
+    setResponsiveValue($('.mid'), [8, 8], ['margin-top', 'margin-bottom']);
+    setResponsiveValue($('.content'), [14], ['font-size']);
+    setResponsiveValue($('.footer'), [30, 30, 14], ['height', 'line-height', 'font-size']);
+    setResponsiveValue($('.btnOrder'), [15], ['font-size']);
+//    setResponsiveValue($('form input'), [12], ['font-size']);
+    setResponsiveValue($('.form-group'), [15], ['margin-bottom']);
+    setResponsiveValue($('.form-control'), [13,34], ['font-size','height']);
+       setResponsiveValue($('.form-group label'), [5, 14], ['margin-bottom', 'font-size']);
 </script>
 
 
