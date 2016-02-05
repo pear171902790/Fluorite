@@ -3,7 +3,7 @@
 @{
     Layout = "~/Views/_Layout.cshtml";
 }
-<link href="~/bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet"/>
+<link href="~/bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet" />
 @*<link href="~/datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet"/>*@
 @*<link href="~/date-time-build/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />*@
 @*<link href="~/dist/DateTimePicker.min.css" rel="stylesheet" />*@
@@ -32,15 +32,15 @@
         <label>留言</label>
         <input type="text" class="form-control" name="Comment" placeholder="您还想了解哪些信息？感谢选择随享优选服务">
     </div>
-@*    <div class="form-group">*@
-@*        <label>日期</label>*@
-@*        <input type="text" data-field="date" readonly="readonly" class="form-control">*@
-@*    </div>*@
-@*    <div class="form-group">*@
-@*        <label>时间</label>*@
-@*        <input type="text" data-field="time" readonly="readonly" class="form-control">*@
-@*    </div>*@
-@*    <div id="dtBox"></div>*@
+    @*    <div class="form-group">*@
+    @*        <label>日期</label>*@
+    @*        <input type="text" data-field="date" readonly="readonly" class="form-control">*@
+    @*    </div>*@
+    @*    <div class="form-group">*@
+    @*        <label>时间</label>*@
+    @*        <input type="text" data-field="time" readonly="readonly" class="form-control">*@
+    @*    </div>*@
+    @*    <div id="dtBox"></div>*@
 </form>
 @*<div class="content mid">*@
 @*    <input size="16" type="text" value="2012-06-15 14:45" readonly class="form_datetime form-control">*@
@@ -69,18 +69,21 @@
     $('.loading').hide();
     $('.main').show();
 
-//    $('#datetimepicker1').datetimepicker({
-//        sideBySide: false,
-//        locale: 'zh-CN',
-//        showClose:true,
-//        widgetPositioning: 
-//            {
-//                horizontal: 'left',
-//                vertical: 'top'
-//            }
+    $('.footer').on('touchend', function (event) {
+        window.location.href = '@Url.Action("Self")';
+    });
+    //    $('#datetimepicker1').datetimepicker({
+    //        sideBySide: false,
+    //        locale: 'zh-CN',
+    //        showClose:true,
+    //        widgetPositioning:
+    //            {
+    //                horizontal: 'left',
+    //                vertical: 'top'
+    //            }
     //    });
-//    $("#dtBox").DateTimePicker({
-//        language:'zh-CN'
+    //    $("#dtBox").DateTimePicker({
+    //        language:'zh-CN'
     //    });
     var windowWidth = $(window).width();
     var setResponsiveValue = function ($obj, values, propertyNames) {
@@ -100,13 +103,8 @@
     setResponsiveValue($('.content'), [14], ['font-size']);
     setResponsiveValue($('.footer'), [30, 30, 14], ['height', 'line-height', 'font-size']);
     setResponsiveValue($('.btnOrder'), [15], ['font-size']);
-//    setResponsiveValue($('form input'), [12], ['font-size']);
+    //    setResponsiveValue($('form input'), [12], ['font-size']);
     setResponsiveValue($('.form-group'), [15], ['margin-bottom']);
-    setResponsiveValue($('.form-control'), [13,34,12], ['font-size','height','padding-left']);
-       setResponsiveValue($('.form-group label'), [5, 14], ['margin-bottom', 'font-size']);
+    setResponsiveValue($('.form-control'), [13, 34, 12], ['font-size', 'height', 'padding-left']);
+    setResponsiveValue($('.form-group label'), [5, 14], ['margin-bottom', 'font-size']);
 </script>
-
-
-
-
-
