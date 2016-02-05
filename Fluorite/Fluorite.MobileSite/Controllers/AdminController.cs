@@ -16,6 +16,8 @@ namespace Fluorite.MobileSite.Controllers
             var list = new DB().Sellers.Where(x => x.Valid).OrderByDescending(x => x.CreateTime).ToList();
             ViewBag.Host = Request.Url.Authority;
             ViewBag.Sellers = list;
+            var selves = new DB().Selves.ToList();
+            ViewBag.SelfContent = selves.Any() ? selves[0].Content : String.Empty;
             return View();
         }
 
@@ -133,7 +135,7 @@ namespace Fluorite.MobileSite.Controllers
                     article.Order = command.Order;
                     article.OrderTitle = command.OrderTitle;
                     article.Title = command.Title;
-                    article.Type = (ArticleType) command.Type;
+                    article.Type = (ArticleType)command.Type;
                     article.CoverUrl = string.IsNullOrEmpty(coverUrl) ? article.CoverUrl : coverUrl;
                     article.ExternalUrl = command.ExternalUrl;
                     article.IsExternal = command.IsExternal;
@@ -213,6 +215,31 @@ namespace Fluorite.MobileSite.Controllers
             ViewBag.Seller = seller;
             ViewBag.Host = Request.Url.Authority;
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Self([ModelBinder(typeof(JsonBinder<ChangeSelfCommand>))]ChangeSelfCommand command)
+        {
+            using (var db = new DB())
+            {
+                using (var transaction = new TransactionScope())
+                {
+                    var selves = db.Selves.ToList();
+                    if (selves.Any())
+                    {
+                        db.Selves.Remove(selves[0]);
+                    }
+                    db.Selves.Add(new Self() { Content = command.Content });
+                    db.SaveChanges();
+                    transaction.Complete();
+                }
+            }
+            return new HttpStatusCodeResult(200);
+        }
+
+        public class ChangeSelfCommand
+        {
+            public string Content { get; set; }
         }
 
         [HttpPost]

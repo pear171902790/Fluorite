@@ -18,6 +18,14 @@ namespace Fluorite.MobileSite.Data
         public DbSet<User> Users { get; set; }
         public DbSet<Seller> Sellers { get; set; }
         public DbSet<Article> Articles { get; set; }
+        public DbSet<Self> Selves { get; set; }
+    }
+
+    public class Self
+    {
+        [Key]
+        public Guid Id { get; set; }
+        public string Content { get; set; }
     }
 
     public class User

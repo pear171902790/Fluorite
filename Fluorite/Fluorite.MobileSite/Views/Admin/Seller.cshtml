@@ -5,6 +5,7 @@
     ViewBag.Title = "商家管理";
     var sellers = ViewBag.Sellers as List<Seller>;
     var host = ViewBag.Host as string;
+    var selfContent = ViewBag.SelfContent;
 }
 <style>
     h1 {
@@ -15,7 +16,7 @@
         float: right;
     }
 </style>
-
+<link href="~/Content/uploadify.css" rel="stylesheet" />
 <div class="panel panel-info">
     <div class="panel-heading">
         <h1 class="panel-title">商家管理</h1>
@@ -32,18 +33,38 @@
         {
             foreach (var seller in sellers)
             {
-                <tr>
-                    <td>@seller.Name</td>
-                    <td>@seller.CreateTime.ToShortDateString()</td>
-                    <td>@("http://"+host+"/shop/"+ seller.Name)</td>
-                    <td>
-                        <a class="btn btn-primary" href="@Url.Action("Articles",new {sellerId=seller.Id})">编辑</a>
-                        <input type="button" value="删除" class="btn btn-danger" onclick="del('@seller.Id')" />
-                    </td>
-                </tr>
+        <tr>
+            <td>@seller.Name</td>
+            <td>@seller.CreateTime.ToShortDateString()</td>
+            <td>@("http://" + host + "/shop/" + seller.Name)</td>
+            <td>
+                <a class="btn btn-primary" href="@Url.Action("Articles", new {sellerId = seller.Id})">编辑</a>
+                <input type="button" value="删除" class="btn btn-danger" onclick="del('@seller.Id')" />
+            </td>
+        </tr>
             }
         }
     </table>
+</div>
+
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h1 class="panel-title">荧石介绍</h1>
+    </div>
+    <form style="width: 90%; margin: 10px auto;">
+        <div class="form-group">
+            <label>链接</label>
+            <input type="text" class="form-control" readonly="readonly" value="http://www.fomind.com/self" />
+        </div>
+        <div class="form-group">
+            <label>页面内容</label>
+            <script id="self" name="self" type="text/plain">
+            </script>
+        </div>
+        <div class="form-group">
+           <input type="button" class="btn" value="保存" onclick="saveSelf()"/>
+        </div>
+    </form>
 </div>
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
@@ -66,7 +87,6 @@
                         <label>电话</label>
                         <input type="text" class="form-control" name="Tel" placeholder="电话">
                     </div>
-                    
                     <div class="form-group">
                         <label>备注</label>
                         <textarea class="form-control" rows="3" name="Remarks"></textarea>
@@ -80,7 +100,24 @@
         </div>
     </div>
 </div>
+<!-- 配置文件 -->
+<script src="~/UEditor/ueditor.config.js"></script>
+<!-- 编辑器源码文件 -->
+<script src="~/UEditor/ueditor.all.min.js"></script>
 <script>
+    var self = UE.getEditor('self', {
+        toolbars: [
+['fullscreen', 'source', 'undo', 'redo'],
+['bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', 'simpleupload', 'fontfamily', 'fontsize', '|',
+            'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|', 'touppercase', 'tolowercase', '|',
+            'link', 'unlink', 'anchor', '|', 'imagenone', 'imageleft', 'imageright', 'imagecenter']
+        ],
+        autoHeightEnabled: true,
+        autoFloatEnabled: true
+    });
+    self.ready(function () {
+        self.setContent('@Html.Raw(selfContent)');
+    });
     $('#btn_save').on('click', function () {
         var command = $('#form_add_seller').serializeJson();
         $.ajax({
@@ -100,13 +137,27 @@
         var sure = window.confirm('确定要删除吗?');
         if (!sure) return;
         $.ajax({
-            url: "@Url.Action("DeleteSeller","Admin")?id="+id,
+            url: "@Url.Action("DeleteSeller","Admin")?id=" + id,
             type: 'get',
             success: function () {
                 window.location.reload();
             },
             error: function () {
                 alert('服务器错误');
+            }
+        });
+    };
+    var saveSelf = function () {
+        var data = { content: self.getContent() };
+        $.ajax({
+            url: '@Url.Action("Self", "Admin")',
+            type: 'post',
+            data: JSON.stringify(data),
+            success: function () {
+                alert('成功');
+            },
+            error: function () {
+                alert('失败');
             }
         });
     };

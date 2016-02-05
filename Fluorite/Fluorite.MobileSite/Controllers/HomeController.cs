@@ -61,6 +61,21 @@ namespace Fluorite.MobileSite.Controllers
             return View(article);
         }
 
+        public ActionResult Self()
+        {
+            List<Self> selves;
+            using (var db = new DB())
+            {
+                selves = db.Selves.ToList();
+            }
+            if (!selves.Any())
+            {
+                throw new Exception();
+            }
+            return View(model:selves[0].Content);
+        }
+
+
         public ActionResult Order(string sName,string pName)
         {
             Article article;

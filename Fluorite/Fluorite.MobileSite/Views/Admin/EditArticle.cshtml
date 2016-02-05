@@ -107,8 +107,11 @@
     });
     ue.ready(function () {
         ue.setContent('@Html.Raw(article.Content)');
+    });
+    order.ready(function () {
         order.setContent('@Html.Raw(article.Order)');
     });
+
     var add = function () {
         var article = $('#form_add_article').serializeObject();
         article.details = ue.getContent();

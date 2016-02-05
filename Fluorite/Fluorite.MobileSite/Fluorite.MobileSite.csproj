@@ -575,6 +575,7 @@
     <None Include="Properties\PublishProfiles\Fluorite.pubxml" />
     <Content Include="Views\Home\Article.cshtml" />
     <Content Include="Views\Home\Order.cshtml" />
+    <Content Include="Views\Home\Self.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
