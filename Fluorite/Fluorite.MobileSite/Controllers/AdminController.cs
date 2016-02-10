@@ -113,18 +113,18 @@ namespace Fluorite.MobileSite.Controllers
                 coverUrl = "/Content/" + sellerFolderName + "/" + command.ImageName;
             }
             var orderPicUrl = string.Empty;
-            if (!string.IsNullOrEmpty(command.ImageName))
+            if (!string.IsNullOrEmpty(command.OrderImageName))
             {
-                string sourceFile = Server.MapPath("~/temp/" + command.ImageName);
+                string sourceFile = Server.MapPath("~/temp/" + command.OrderImageName);
                 var sellerFolderName = command.SellerId.Replace("-", String.Empty);
                 string destinationPath = Server.MapPath("~/Content/" + sellerFolderName + "/");
                 if (!System.IO.Directory.Exists(destinationPath))
                 {
                     System.IO.Directory.CreateDirectory(destinationPath);
                 }
-                string destinationFile = System.IO.Path.Combine(destinationPath, command.ImageName);
+                string destinationFile = System.IO.Path.Combine(destinationPath, command.OrderImageName);
                 System.IO.File.Move(sourceFile, destinationFile);
-                orderPicUrl = "/Content/" + sellerFolderName + "/" + command.ImageName;
+                orderPicUrl = "/Content/" + sellerFolderName + "/" + command.OrderImageName;
             }
             using (var db = new DB())
             {
@@ -166,18 +166,18 @@ namespace Fluorite.MobileSite.Controllers
                 coverUrl = "/Content/" + sellerFolderName + "/" + command.ImageName;
             }
             var orderPicUrl = string.Empty;
-            if (!string.IsNullOrEmpty(command.ImageName))
+            if (!string.IsNullOrEmpty(command.OrderImageName))
             {
-                string sourceFile = Server.MapPath("~/temp/" + command.ImageName);
+                string sourceFile = Server.MapPath("~/temp/" + command.OrderImageName);
                 var sellerFolderName = command.SellerId.Replace("-", String.Empty);
                 string destinationPath = Server.MapPath("~/Content/" + sellerFolderName + "/");
                 if (!System.IO.Directory.Exists(destinationPath))
                 {
                     System.IO.Directory.CreateDirectory(destinationPath);
                 }
-                string destinationFile = System.IO.Path.Combine(destinationPath, command.ImageName);
+                string destinationFile = System.IO.Path.Combine(destinationPath, command.OrderImageName);
                 System.IO.File.Move(sourceFile, destinationFile);
-                orderPicUrl = "/Content/" + sellerFolderName + "/" + command.ImageName;
+                orderPicUrl = "/Content/" + sellerFolderName + "/" + command.OrderImageName;
             }
             using (var db = new DB())
             {
@@ -269,6 +269,8 @@ namespace Fluorite.MobileSite.Controllers
             public string ImageName { get; set; }
             public string Order { get; set; }
             public string OrderTitle { get; set; }
+
+            public string OrderImageName { get; set; }
         }
 
         public class EditArticleUICommand
@@ -284,6 +286,7 @@ namespace Fluorite.MobileSite.Controllers
             public string Id { get; set; }
             public string Order { get; set; }
             public string OrderTitle { get; set; }
+            public string OrderImageName { get; set; }
         }
         public class SellerUICommand
         {

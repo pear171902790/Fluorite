@@ -26,7 +26,7 @@
         <label>商品名称</label>
         <input type="text" class="form-control" name="Title">
         <input type="hidden" name="ImageName" id="ImageName">
-        <input type="hidden" name="ImageNameYY" id="ImageNameYY">
+        <input type="hidden" name="OrderImageName" id="OrderImageName">
         <input type="hidden" name="SellerId" value="@seller.Id">
     </div>
     <div class="form-group">
@@ -129,7 +129,7 @@
         'uploader': '@Url.Action("SaveImage")',
         'onUploadSuccess': function (file, data, response) {
             $('#cover_yy').show().attr('src', '@Url.Content("~/temp/")' + data);
-            $('#ImageNameYY').val(data);
+            $('#OrderImageName').val(data);
         }
     });
     var check = function () {

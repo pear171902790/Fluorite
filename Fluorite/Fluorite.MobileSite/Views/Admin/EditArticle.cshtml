@@ -27,7 +27,7 @@
         <label>商品名称</label>
         <input type="text" class="form-control" name="Title" value="@article.Title">
         <input type="hidden" name="ImageName" id="ImageName">
-        <input type="hidden" name="ImageNameYY" id="ImageNameYY">
+        <input type="hidden" name="OrderImageName" id="OrderImageName">
         <input type="hidden" name="SellerId" value="@seller.Id">
         <input type="hidden" name="Id" value="@article.Id">
     </div>
@@ -65,7 +65,15 @@
     </div>
     <div class="form-group details">
         <label>预约广告图</label>
-        <img id="cover_yy" style="display: none" /><br /><br />
+        @if (string.IsNullOrEmpty(article.OrderPicUrl))
+        {
+            <img id="cover_yy" style="display: none" />
+        }
+        else
+        {
+            <img id="cover_yy" src="@article.OrderPicUrl" />
+        }
+        <br /><br />
         <input type="file" name="file_upload_yy" id="file_upload_yy" />
     </div>
     <div class="form-group details">
@@ -149,7 +157,7 @@
         'uploader': '@Url.Action("SaveImage")',
         'onUploadSuccess': function (file, data, response) {
             $('#cover_yy').show().attr('src', '@Url.Content("~/temp/")' + data);
-            $('#ImageNameYY').val(data);
+            $('#OrderImageName').val(data);
         }
     });
     var check = function () {

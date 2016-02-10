@@ -77,7 +77,7 @@
                     </div>
                     <div class="item_text">
                         <a href="@((commons.NullOrNone() || !commons.Exist(i)) ? "javascript:void(0)" : Url.Action("Article") + "?articleId=" + commons[i].Id)">
-                            @((commons.NullOrNone() || !commons.Exist(i)) ? "暂无标题暂无标题暂无标题" : commons[i].Title)
+                            @((commons.NullOrNone() || !commons.Exist(i)) ? "暂无标题暂无标题暂无标题" : commons[i].Remarks)
                         </a>
                     </div>
                 </div>
@@ -94,7 +94,7 @@
                     </div>
                     <div class="fr foot_right_text">
                         <a href="@((smalls.NullOrNone() || !smalls.Exist(i)) ? "javascript:void(0)" : Url.Action("Article") + "?articleId=" + smalls[i].Id)">
-                            @((smalls.NullOrNone() || !smalls.Exist(i)) ? "暂无标题暂无标题暂无标题" : smalls[i].Title)
+                            @((smalls.NullOrNone() || !smalls.Exist(i)) ? "暂无标题暂无标题暂无标题" : smalls[i].Remarks)
                         </a>
                     </div>
                 </div>
