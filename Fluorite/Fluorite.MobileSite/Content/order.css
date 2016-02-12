@@ -19,20 +19,30 @@
     margin-right: auto;
     background-color: rgb(236, 236, 237);
 }
-
+.mid img {
+    width: 100% !important;
+}
 .footer {
     vertical-align: middle;
     text-align: center;
     width: 100%;
     background-color: rgb(236, 236, 237);
-    
+    color: #9f9f9f;
 }
 .btnOrder {
     width: 100%;
     background-color: rgb(199, 159, 99);
-    color: white;
+    color: #9f9f9f;
 }
 
 body {
     background-color: rgb(236, 236, 237);
 }
+.form-group label {
+    font-weight: normal !important;
+    color: #585858 !important;
+}
+.form-control {
+    color: #cacaca !important;
+}
+
