@@ -33,6 +33,12 @@ namespace Fluorite.MobileSite
                 defaults: new { controller = "Home", action = "NotFound", id = UrlParameter.Optional }
             );
 
+//            routes.MapRoute(
+//                name: "Product",
+//                url: "product/{productId}",
+//                defaults: new { controller = "Home", action = "Article" }
+//            );
+
             routes.MapRoute(
                 name: "Seller",
                 url: "shop/{sellerName}",

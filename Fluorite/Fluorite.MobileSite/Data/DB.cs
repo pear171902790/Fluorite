@@ -51,7 +51,7 @@ namespace Fluorite.MobileSite.Data
         public virtual List<Article> Articles { get; set; }
         public string LogoUrl { get; set; }
         public string LogoText { get; set; }
-
+        public string LogoTextSize { get; set; }
         public string LogoUri { get; set; }
     }
     public class Article

@@ -70,6 +70,10 @@
                 <input type="text" class="form-control" name="LogoText" value="@seller.LogoText">
             </div>
             <div class="form-group">
+                <label>底部LOGO文字大小</label>
+                <input type="text" class="form-control" name="LogoTextSize" value="@seller.LogoTextSize">像素
+            </div>
+            <div class="form-group">
                 <label>底部LOGO链接</label>
                 <input type="text" class="form-control" name="LogoUri" value="@seller.LogoUri">
             </div>
@@ -93,8 +97,9 @@
     <table class="table table-hover table-striped table-bordered">
         <tr>
             <th>商品标题</th>
-            <th>创建时间</th>
+@*            <th>创建时间</th>*@
             <th>入口位置</th>
+            <th>详情页地址</th>
             <th>操作</th>
         </tr>
         @if (articles != null && articles.Any())
@@ -103,8 +108,9 @@
             {
                 <tr>
                     <td>@article.Title</td>
-                    <td>@article.CreateTime.ToShortDateString()</td>
+@*                    <td>@article.CreateTime.ToShortDateString()</td>*@
                     <td>@article.Type.DisplayName()</td>
+                    <td>@("http://" + host  + Url.Action("Article", "Home") + "?articleId=" + article.Id)</td>
                     <td>
                         <a href="@Url.Action("EditArticle",new {articleId=article.Id})" class="btn btn-primary">编辑</a>
                         <input type="button" value="删除" class="btn btn-danger" onclick="del('@article.Id')" />

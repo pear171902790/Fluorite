@@ -100,8 +100,8 @@
                 </div>
                 <div class="cf"></div>
             }
-            <div class="foot_bottom w100">
-                @(string.IsNullOrEmpty(seller.LogoText)?"Fomind":seller.LogoText)
+            <div class="foot_bottom w100" style="font-size: @(string.IsNullOrEmpty(seller.LogoTextSize) ? "20" : seller.LogoTextSize)px;">
+                @(string.IsNullOrEmpty(seller.LogoText) ? "Fomind" : seller.LogoText)
             </div>
         </div>
     </div>

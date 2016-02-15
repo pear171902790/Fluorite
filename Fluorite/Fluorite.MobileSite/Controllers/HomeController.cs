@@ -48,16 +48,18 @@ namespace Fluorite.MobileSite.Controllers
 
         public ActionResult Article(string articleId)
         {
+            Seller seller;
             Article article;
             using (var db = new DB())
             {
                 article = db.Articles.SingleOrDefault(x => x.Id == new Guid(articleId));
+                seller = db.Sellers.SingleOrDefault(x => x.Id == article.SellerId);
             }
             if (!string.IsNullOrEmpty(article.ExternalUrl))
             {
                 return new RedirectResult(article.ExternalUrl);
             }
-
+            ViewBag.Seller = seller;
             return View(article);
         }
 

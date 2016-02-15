@@ -76,6 +76,11 @@ namespace Fluorite.MobileSite.Controllers
                     seller.LogoUrl = logoUrl;
                     seller.LogoText = sellerUiCommand.LogoText;
                     seller.LogoUri = sellerUiCommand.LogoUri;
+                    int temp;
+                    if (int.TryParse(sellerUiCommand.LogoTextSize, out temp))
+                    {
+                        seller.LogoTextSize = sellerUiCommand.LogoTextSize;
+                    }
                     db.SaveChanges();
                     transaction.Complete();
                 }
@@ -297,7 +302,7 @@ namespace Fluorite.MobileSite.Controllers
             public string Remarks { get; set; }
             public string ImageName { get; set; }
             public string LogoText { get; set; }
-
+            public string LogoTextSize { get; set; }
             public string LogoUri { get; set; }
         }
 

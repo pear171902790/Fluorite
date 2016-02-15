@@ -1,24 +1,76 @@
-﻿@model Fluorite.MobileSite.Data.Article
+﻿@using Fluorite.MobileSite.Data
+@model Fluorite.MobileSite.Data.Article
 
 @{
-    ViewBag.Title = Model.Title;
     Layout = null;
+    var seller = ViewBag.Seller as Seller;
 }
 <!DOCTYPE html>
 
 <html>
 <head>
-    <title>登录</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@Model.Title</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
         html, body {
             font-size: 15px;
             font-family: 微软雅黑, 宋体, Arial, Helvetica, sans-serif !important;
         }
+
+        object {
+            max-width: 100%;
+        }
+
+        img {
+            width: 100%;
+        }
+
+        .header {
+            vertical-align: middle;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+        }
+
+        .header_replacement {
+            height: 35px;
+        }
     </style>
 </head>
 <body>
-    <div style="margin: 0 auto; width: 85%">
-        @Html.Raw(Model.Content)
+<div style="margin: 0 auto; width: 90%">
+    <div class="header" style="text-align: center;">
+        <img class="back" src="@(string.IsNullOrEmpty(seller.LogoUrl) ? "/页面内元素打包/顶部元素/顶部LOGO.png" : seller.LogoUrl)" 
+             style="width: 70%"/>
     </div>
+    <div class="header_replacement"></div>
+    @Html.Raw(Model.Content)
+</div>
+    <script src="~/Content/jquery-1.9.1.min.js"></script>
+<script>
+    var windowWidth = $(window).width();
+    var setResponsiveValue = function ($obj, values, propertyNames) {
+        if (propertyNames && values) {
+            var finalValue = 0;
+            for (var i = 0; i < propertyNames.length; i++) {
+                if (values[i] !== undefined) {
+                    finalValue = (values[i] * windowWidth) / 320;
+                }
+                $obj.css(propertyNames[i], finalValue + 'px');
+            }
+        }
+    }
+    setResponsiveValue($('.header'), [40, 40, 18], ['height', 'line-height', 'font-size']);
+    setResponsiveValue($('.header_replacement'), [40], ['height']);
+    $('.back').on('touchend', function (event) {
+        window.location.href = '/shop/@(seller.Name)';
+    });
+</script>
 </body>
 </html>
