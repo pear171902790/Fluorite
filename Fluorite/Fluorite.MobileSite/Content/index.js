@@ -69,6 +69,8 @@
 //        $('.content').css('width', owlItemWidth + 'px');
         //        $('.foot').css('width', owlItemWidth + 'px');
         $('.owl-carousel').css('height', $('.owl-stage-outer').height() + 'px').css('margin', '0');
+//        $('.owl-item').css('width', ($('.owl-item').width() + 4) + 'px');
+//        setResponsiveValue($('.owl-item'), [15], ['right']);
     }, 500);
 
     var leftShow = false;

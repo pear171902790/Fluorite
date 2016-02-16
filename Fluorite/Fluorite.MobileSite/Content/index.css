@@ -25,9 +25,7 @@ div.logo {
     width: 100%;
 }
 
-.owl-item div, .owl-item img {
-    width: 100% !important;
-}
+
 
 
 .owl-dots {
@@ -36,7 +34,9 @@ div.logo {
     margin: 0 auto !important;
 }
 
-
+.owl-item div {
+    margin: 0 2px !important;
+}
 
 div.content, div.item {
     margin: 0 auto;
