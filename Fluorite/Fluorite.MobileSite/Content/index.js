@@ -105,6 +105,24 @@
         e.preventDefault();
         e.returnValue = false;
     });
+
+    var startX, startY, moveEndX, moveEndY;
+    $("div").on("touchstart", function (e) {
+        startX = e.originalEvent.changedTouches[0].pageX,
+        startY = e.originalEvent.changedTouches[0].pageY;
+    });
+    $("div").on("touchmove", function (e) {
+        moveEndX = e.originalEvent.changedTouches[0].pageX;
+        moveEndY = e.originalEvent.changedTouches[0].pageY;
+        var X = moveEndX >= startX ? moveEndX - startX : startX - moveEndX;
+        var Y = moveEndY >= startY ? moveEndY - startY : startY - moveEndY;
+
+        if (X >= Y) {
+            e.preventDefault();
+            e.returnValue = false;
+        }
+        
+    });
 });
 
 
