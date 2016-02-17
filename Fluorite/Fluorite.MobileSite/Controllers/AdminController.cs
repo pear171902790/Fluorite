@@ -73,7 +73,10 @@ namespace Fluorite.MobileSite.Controllers
                     seller.CreateTime = DateTime.Now;
                     seller.Remarks = sellerUiCommand.Remarks;
                     seller.Tel = sellerUiCommand.Tel;
-                    seller.LogoUrl = logoUrl;
+                    if (!string.IsNullOrEmpty(logoUrl))
+                    {
+                        seller.LogoUrl = logoUrl;
+                    }
                     seller.LogoText = sellerUiCommand.LogoText;
                     seller.LogoUri = sellerUiCommand.LogoUri;
                     int temp;
@@ -145,7 +148,7 @@ namespace Fluorite.MobileSite.Controllers
                     article.ExternalUrl = command.ExternalUrl;
                     article.IsExternal = command.IsExternal;
                     article.Remarks = command.Remarks;
-                    article.OrderPicUrl = orderPicUrl;
+                    article.OrderPicUrl = string.IsNullOrEmpty(orderPicUrl) ? article.OrderPicUrl : orderPicUrl;
                     db.SaveChanges();
                     transaction.Complete();
                 }
@@ -205,6 +208,7 @@ namespace Fluorite.MobileSite.Controllers
                         Remarks = command.Remarks,
                         OrderPicUrl = orderPicUrl
                     });
+
                     db.SaveChanges();
                     transaction.Complete();
                 }

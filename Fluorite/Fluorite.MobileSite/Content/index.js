@@ -23,8 +23,8 @@
     setResponsiveValue($('div.menu'), [5], ['padding-top', 'padding-left']);
     setResponsiveValue($('div.menu img'), [20], ['height']);
     setResponsiveValue($('div.logo img'), [32],['height']);
-    setResponsiveValue($('div.item_text'), [50,45], ['height','line-height']);
-    setResponsiveValue($('div.foot_right_text'), [55,47.5], ['height', 'line-height']);
+    setResponsiveValue($('div.item_text'), [45,40], ['height','line-height']);
+    setResponsiveValue($('div.foot_right_text'), [55,45], ['height', 'line-height']);
     setResponsiveValue($('div.foot_logo'), [55], ['min-height']);
     setResponsiveValue($('.left_search'), [40], ['height']);
     setResponsiveValue($('.left_search_input'), [30], ['height']);
@@ -33,8 +33,9 @@
     setResponsiveValue($('.search_button'), [30], ['height']);
     setResponsiveValue($('.search_button img'), [6], ['top']);
     setResponsiveValue($('div.content'), [15], ['margin-top', 'margin-bottom']);
-    setResponsiveValue($('div.item'), [10], ['margin-top', 'margin-bottom']);
-    setResponsiveValue($('div.right_main'), [1], ['right']);
+    setResponsiveValue($('div.item'), [15], ['margin-top', 'margin-bottom']);
+//    setResponsiveValue($('div.right_main'), [1], ['right']);
+    
 
     $('.loading').hide();
     $('.main').show();
@@ -74,6 +75,8 @@
 
         $('.content').css('width', $('.owl-item div').width()  + 'px');
         $('.foot').css('width', $('.owl-item div').width() + 'px');
+
+        setResponsiveValue($('.owl-dot span'), [7], ['width', 'height']);
     }, 500);
 
     var leftShow = false;
@@ -97,13 +100,23 @@
         var e = window.event || event;
         e.preventDefault();
         e.returnValue = false;
+        e.stopPropagation();
+        e.cancelBubble = true;
     });
-    $('.cover').on('touchstart', hideLeftMenu);
+    $('.cover').on('touchstart', function(e) {
+        hideLeftMenu();
+        e.preventDefault();
+        e.returnValue = false;
+        e.stopPropagation();
+        e.cancelBubble = true;
+    });
 
     $('.left').on('touchmove', function (event) {
         var e = window.event || event;
         e.preventDefault();
         e.returnValue = false;
+        e.stopPropagation();
+        e.cancelBubble = true;
     });
 
     var startX, startY, moveEndX, moveEndY;
@@ -120,6 +133,8 @@
         if (X >= Y) {
             e.preventDefault();
             e.returnValue = false;
+            e.stopPropagation();
+            e.cancelBubble = true;
         }
         
     });

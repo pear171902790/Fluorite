@@ -19,21 +19,22 @@
 </style>
 <script src="~/owl.carousel.2.0.0-beta.3/owl.carousel.min.js"></script>
 <div class="left fl" style="display: none">
-    <div class="left_search">
-        <div style="width: 100%; height: 5px;"></div>
-        <div class="left_search_input">
-            <input type="text" id="search" />
-            <div class="search_button">
-                <img src="~/Content/放大镜按钮30x30.png" />
-            </div>
-        </div>
-        <div class="cf"></div>
-    </div>
+@*    <div class="left_search">*@
+@*        <div style="width: 100%; height: 5px;"></div>*@
+@*        <div class="left_search_input">*@
+@*            <input type="text" id="search" />*@
+@*            <div class="search_button">*@
+@*                <img src="~/Content/放大镜按钮30x30.png" />*@
+@*            </div>*@
+@*        </div>*@
+@*        <div class="cf"></div>*@
+@*    </div>*@
 @*    <div class="left_menu">登录</div>*@
     @for (int i = 0; i < 7; i++)
     {
         <div class="left_menu">
-            <a href="@((menus.NullOrNone() || !menus.Exist(i)) ? "javascript:void(0)" :Url.Action("Article")+"?articleId="+ menus[i].Id)">
+@*            <a href="@((menus.NullOrNone() || !menus.Exist(i)) ? "javascript:void(0)" :Url.Action("Article")+"?articleId="+ menus[i].Id)">*@
+            <a href="@( (menus.NullOrNone() || !menus.Exist(i)) ? "javascript:void(0)" :  (string.IsNullOrEmpty(menus[i].ExternalUrl)?"javascript:void(0)":menus[i].ExternalUrl) )">
                 @((menus.NullOrNone() || !menus.Exist(i)) ? "菜单" + (i + 1) : menus[i].Title)
             </a>
         </div>
@@ -45,7 +46,7 @@
     <div class="right_main">
         <div class="head w100">
             <div class="menu fl">
-                <img src="~/Content/菜单按钮15.png" />
+                <img src="~/Content/菜单按钮15.png" style="width: auto;"/>
             </div>
             <div class="logo fl">
                 <img style="max-width: 100%; width: auto;" src="@(string.IsNullOrEmpty(seller.LogoUrl) ? "/页面内元素打包/顶部元素/顶部LOGO.png" : seller.LogoUrl)" />
@@ -59,8 +60,8 @@
             @for (int i = 0; i < 5; i++)
             {
                 <div>
-                    <a href="@((crousels.NullOrNone() || !crousels.Exist(i)) ? "javascript:void(0)" : Url.Action("Article") + "?articleId=" + crousels[i].Id)">
-                        <img src="@((crousels.NullOrNone() || !crousels.Exist(i)) ? "/Content/nopic.jpg" : crousels[i].CoverUrl)"/>
+                    <a href="@((crousels.NullOrNone() || !crousels.Exist(i)) ? "javascript:void(0)" : (string.IsNullOrEmpty(crousels[i].ExternalUrl) ? "javascript:void(0)" : crousels[i].ExternalUrl))">
+                        <img src="@((crousels.NullOrNone() || !crousels.Exist(i)) ? "/Content/nopic.jpg" : crousels[i].CoverUrl)" />
                     </a>
                 </div>
             }
@@ -71,12 +72,12 @@
                 <div class="item">
 
                     <div class="item_img">
-                        <a href="@((commons.NullOrNone() || !commons.Exist(i)) ? "javascript:void(0)" : Url.Action("Article") + "?articleId=" + commons[i].Id)">
+                        <a href="@((commons.NullOrNone() || !commons.Exist(i)) ? "javascript:void(0)" : (string.IsNullOrEmpty(commons[i].ExternalUrl) ? "javascript:void(0)" : commons[i].ExternalUrl))">
                             <img src="@((commons.NullOrNone() || !commons.Exist(i)) ? "/Content/nopic.jpg" : commons[i].CoverUrl)" />
                         </a>
                     </div>
                     <div class="item_text">
-                        <a href="@((commons.NullOrNone() || !commons.Exist(i)) ? "javascript:void(0)" : Url.Action("Article") + "?articleId=" + commons[i].Id)">
+                        <a href="@((commons.NullOrNone() || !commons.Exist(i)) ? "javascript:void(0)" : (string.IsNullOrEmpty(commons[i].ExternalUrl) ? "javascript:void(0)" : commons[i].ExternalUrl))">
                             @((commons.NullOrNone() || !commons.Exist(i)) ? "暂无标题暂无标题暂无标题" : commons[i].Remarks)
                         </a>
                     </div>
@@ -88,19 +89,19 @@
             {
                 <div class="foot_logo">
                     <div class="fl foot_left_logo">
-                        <a href="@((smalls.NullOrNone() || !smalls.Exist(i)) ? "javascript:void(0)" : Url.Action("Article") + "?articleId=" + smalls[i].Id)">
+                        <a href="@((smalls.NullOrNone() || !smalls.Exist(i)) ? "javascript:void(0)" : (string.IsNullOrEmpty(smalls[i].ExternalUrl) ? "javascript:void(0)" : smalls[i].ExternalUrl))">
                             <img src="@((smalls.NullOrNone() || !smalls.Exist(i)) ? "/Content/nopic.jpg" : smalls[i].CoverUrl)" />
                         </a>
                     </div>
                     <div class="fr foot_right_text">
-                        <a href="@((smalls.NullOrNone() || !smalls.Exist(i)) ? "javascript:void(0)" : Url.Action("Article") + "?articleId=" + smalls[i].Id)">
+                        <a href="@((smalls.NullOrNone() || !smalls.Exist(i)) ? "javascript:void(0)" : (string.IsNullOrEmpty(smalls[i].ExternalUrl) ? "javascript:void(0)" : smalls[i].ExternalUrl))">
                             @((smalls.NullOrNone() || !smalls.Exist(i)) ? "暂无标题暂无标题暂无标题" : smalls[i].Remarks)
                         </a>
                     </div>
                 </div>
                 <div class="cf"></div>
             }
-            <div class="foot_bottom w100" style="font-size: @(string.IsNullOrEmpty(seller.LogoTextSize) ? "20" : seller.LogoTextSize)px;">
+            <div class="foot_bottom w100" style="font-size: @(string.IsNullOrEmpty(seller.LogoTextSize) ? "1.2" : seller.LogoTextSize)em;">
                 @(string.IsNullOrEmpty(seller.LogoText) ? "Fomind" : seller.LogoText)
             </div>
         </div>

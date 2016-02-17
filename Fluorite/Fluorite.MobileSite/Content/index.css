@@ -90,8 +90,8 @@ div.foot_right_text {
     width: 65%;
     font-size: 1em;
     text-align: center;
-    vertical-align: middle;
     color: #727272;
+    text-overflow:ellipsis;
 }
 
 div.foot_bottom {
